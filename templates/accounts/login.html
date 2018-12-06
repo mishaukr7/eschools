@@ -1,0 +1,15 @@
+
+<div class="container">
+  <h2>Log in to My Site</h2>
+  {% if form.errors %}
+    <p style="color: red">Your username and password didn't match. Please try again.</p>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+      {{form.media.js}}
+    <input type="hidden" name="next" value="{{ next }}" />
+      {{form}}
+    <button type="submit">Log in</button>
+    <a href="{% url 'signup' %}">New to My Site? Sign up</a>
+  </form>
+</div>

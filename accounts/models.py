@@ -17,7 +17,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
     portal_code = models.CharField(max_length=255, null=True, blank=True)
     phone = models.DecimalField(
-        'номер телефона',
+        'номер телефону',
         max_digits=10,
         decimal_places=0,
         unique=True,

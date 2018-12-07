@@ -138,7 +138,7 @@ jQuery.fn = jQuery.prototype = {
 
 	// Force the current matched set of elements to become
 	// the specified array of elements (destroying the stack in the process)
-	// You should use pushStack() in order to do this, but maintain the stack
+	// You should use pushStack() in orders to do this, but maintain the stack
 	setArray: function( elems ) {
 		// Resetting the length to 0, then using the native Array push
 		// is a super-fast way to populate an object with array-like properties
@@ -305,7 +305,7 @@ jQuery.fn = jQuery.prototype = {
 				// IE copies events bound via attachEvent when
 				// using cloneNode. Calling detachEvent on the
 				// clone will also remove the events from the orignal
-				// In order to get around this, we use innerHTML.
+				// In orders to get around this, we use innerHTML.
 				// Unfortunately, this means some modifications to
 				// attributes in IE that are actually only stored
 				// as properties will not be copied (such as the
@@ -3931,7 +3931,7 @@ jQuery.fn.extend({
 			this.queue([]);
 
 		this.each(function(){
-			// go in reverse order so anything added to the queue during the loop is ignored
+			// go in reverse orders so anything added to the queue during the loop is ignored
 			for ( var i = timers.length - 1; i >= 0; i-- )
 				if ( timers[i].elem == this ) {
 					if (gotoEnd)

@@ -1,10 +1,12 @@
-from django.http import HttpResponse
+from django.views.generic import CreateView
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, get_user_model
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
+from django.urls import reverse_lazy
+
 from .tokens import account_activation_token
 from .forms import SignupForm
 from .models import CustomUser
@@ -12,26 +14,25 @@ from .models import CustomUser
 User = get_user_model()
 
 
-def signup(request):
-    if request.method == 'POST':
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.is_active = False
-            user.save()
-            current_site = get_current_site(request)
-            subject = 'Активація аккаунту на сайті e-schools'
-            message = render_to_string('accounts/account_activation_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
-                'token': account_activation_token.make_token(user),
-            })
-            user.email_user(subject, message)
-            return redirect('account_activation_sent')
-    else:
-        form = SignupForm()
-    return render(request, 'accounts/signup.html', {'form': form})
+class SignUp(CreateView):
+    form_class = SignupForm
+    success_url = reverse_lazy('accounts:account_activation_sent')
+    template_name = 'accounts/signup.html'
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.is_active = False
+        user.save()
+        current_site = get_current_site(self.request)
+        subject = 'Account activation at e-schools.com'
+        message = render_to_string('accounts/account_activation_email.html', {
+            'user': user,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
+            'token': account_activation_token.make_token(user),
+        })
+        user.email_user(subject, message)
+        return super(SignUp, self).form_valid(form)
 
 
 def activate(request, uidb64, token):
@@ -46,7 +47,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        return redirect('home')
+        return redirect('shop:home')
     else:
         return render(request, 'accounts/account_activation_invalid.html')
 

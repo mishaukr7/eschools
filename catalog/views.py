@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Product, Category
+from cart.forms import CartAddProductForm
 # Create your views here.
 
 
@@ -22,3 +23,16 @@ class ProductListView(ListView):
         context = super(ProductListView, self).get_context_data(**kwargs)
         category = Category.objects.get(slug=self.kwargs['slug'])
         context['categories'] = category.get_slug_list()
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'product_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductDetailView, self).get_context_data(**kwargs)
+        context['cart_product_form'] = CartAddProductForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        return

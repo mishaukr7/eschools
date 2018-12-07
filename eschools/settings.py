@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'shop:home'
 
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
@@ -38,17 +38,25 @@ MPTT_ADMIN_LEVEL_INDENT = 3
 # Application definition
 
 INSTALLED_APPS = [
+
+    # Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # libs
     'mptt',
     'ckeditor',
+
+    # apps
     'shop',
     'catalog',
     'accounts',
+    'cart',
+    'orders'
 ]
 
 MIDDLEWARE = [
@@ -74,6 +82,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'catalog.context_processors.get_category_tree',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -133,6 +143,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+CART_SESSION_ID = 'cart'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'

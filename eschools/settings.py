@@ -32,6 +32,7 @@ LOGIN_REDIRECT_URL = 'shop:home'
 
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 MPTT_ADMIN_LEVEL_INDENT = 3
 
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     # libs
     'mptt',
     'ckeditor',
+    'import_export',
 
     # apps
     'shop',

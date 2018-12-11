@@ -8,16 +8,16 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_('email address'), unique=True)
-    first_name = models.CharField(_('first name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last name'), max_length=30, blank=True)
-    date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
-    is_active = models.BooleanField(_('active'), default=False)
-    is_staff = models.BooleanField(_('staff'), default=False)
-    objects = CustomUserManager()
-    portal_code = models.CharField(max_length=255, null=True, blank=True)
+    email = models.EmailField('Пошта', unique=True)
+    first_name = models.CharField("Ім'я", max_length=30, blank=True)
+    last_name = models.CharField('Прізвище', max_length=30, blank=True)
+    date_joined = models.DateTimeField('Дата реєстрації', auto_now_add=True)
+    is_active = models.BooleanField('Активний', default=False)
+    is_staff = models.BooleanField('Адмін', default=False)
+
+    portal_code = models.CharField('Код з порталу', max_length=255, null=True, blank=True)
     phone = models.DecimalField(
-        'номер телефону',
+        'Номер телефону',
         max_digits=10,
         decimal_places=0,
         unique=True,
@@ -34,9 +34,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     REQUIRED_FIELDS = []
 
+
+    objects = CustomUserManager()
     class Meta:
-        verbose_name = _('user')
-        verbose_name_plural = _('users')
+        verbose_name = _('Користувачі')
+        verbose_name_plural = _('Користувачі')
 
     def get_full_name(self):
         '''

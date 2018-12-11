@@ -9,7 +9,7 @@ class OrderItemInline(admin.TabularInline):
 
 class OrderAdmin(admin.ModelAdmin):
 
-    list_display = ['customer', 'total_price', 'customer_email', 'customer_phone', 'city', 'delivery_type',
+    list_display = ['customer', 'customer_email', 'customer_phone', 'city', 'delivery_type',
                     'customer_first_name', 'customer_last_name', 'customer_patronymic', 'status',
                     'created']
     list_filter = ['status', 'created']
@@ -17,3 +17,5 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Order, OrderAdmin)
+
+

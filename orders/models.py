@@ -19,7 +19,7 @@ class Order(models.Model):
 
     customer = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, default=None,
                                  on_delete=models.SET_NULL)
-    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    # total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     customer_email = models.EmailField(blank=False, null=False)
     customer_phone = models.DecimalField(
@@ -67,7 +67,7 @@ class Order(models.Model):
 
     @property
     def total_cost(self):
-        return sum(item.get_cost() for item in self.items.all())
+        return sum(item.fullt_item_cost() for item in self.items.all())
 
 
 class OrderItem(models.Model):
@@ -76,9 +76,10 @@ class OrderItem(models.Model):
     price = models.DecimalField(verbose_name='Ціна', max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(verbose_name='Кількість', default=1)
 
-    # def __str__(self):
-    #     f'{self.id} {self.product1}'
+    def __str__(self):
+        f'{self.id}: {self.product}'
 
     @property
-    def get_cost(self):
+    def full_item_cost(self):
         return self.price * self.quantity
+

@@ -16,4 +16,6 @@ class News(models.Model):
 
     class Meta:
         ordering = ['-created', '-updated']
+        verbose_name = 'Новина'
+        verbose_name_plural = 'Новини'
 

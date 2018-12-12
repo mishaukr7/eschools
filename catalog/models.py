@@ -1,13 +1,13 @@
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
-from ckeditor.fields import RichTextField
+from django.template.defaultfilters import slugify
 from django.contrib.postgres.fields import ArrayField
 from accounts.models import CustomUser
 # Create your models here.
 
 
 class Category(MPTTModel):
-    name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=200)
     slug = models.SlugField()
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True,
                             on_delete=models.SET_NULL)
@@ -59,6 +59,12 @@ class Product(models.Model):
     available = models.BooleanField(default=True, verbose_name='Доступний')
     partner = models.ForeignKey('Partner', blank=True, null=True, on_delete=models.SET_NULL)
     best = models.BooleanField(default=False, verbose_name='Найкращий товар')
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        self.slug = slugify(self.name)
+        super(Product, self).save(force_insert=False, force_update=False, using=None,
+             update_fields=None)
 
     class Meta:
         ordering = ['name']
@@ -128,7 +134,8 @@ class Brand(models.Model):
 
 
 class ProductCharacteristic(models.Model):
-    product = models.ForeignKey(Product, blank=True, null=True, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, blank=True, null=True, on_delete=models.CASCADE,
+                                related_name='characteristics')
     characteristic_type = models.CharField(max_length=255, blank=True, null=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     value = models.CharField(max_length=255, null=True, blank=True)

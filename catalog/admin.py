@@ -1,5 +1,5 @@
 from django.contrib import admin
-from catalog.models import Category, Product, ProductCharacteristic, ProductImage, Partner
+from catalog.models import Brand, Category, Product, ProductCharacteristic, ProductImage, Partner
 from mptt.admin import MPTTModelAdmin
 from import_export.admin import ImportExportModelAdmin
 from .resources import ProductResource
@@ -24,13 +24,19 @@ class ProductAdmin(ImportExportModelAdmin):
     list_filter = ['name', 'created']
     inlines = [ProductInline, ProductImageInline]
     resource_class = ProductResource
+    exclude = ['slug']
 
 
 admin.site.register(Product, ProductAdmin)
 
 admin.site.register(Partner)
 
+admin.site.register(Brand)
 
-# @admin.register(Product)
-# class ProductExport(ImportExportModelAdmin):
-#     pass
+
+class ProductCharacteristicAdmin(ImportExportModelAdmin):
+    list_filter = ['product', 'name']
+    list_display = ['product']
+
+
+admin.site.register(ProductCharacteristic, ProductCharacteristicAdmin)

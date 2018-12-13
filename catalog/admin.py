@@ -1,11 +1,17 @@
 from django.contrib import admin
-from catalog.models import Brand, Category, Product, ProductCharacteristic, ProductImage, Partner
+from catalog.models import Brand, Category, Product, ProductCharacteristic, ProductImage, Partner, FeedBack
 from mptt.admin import MPTTModelAdmin
-from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from .resources import ProductResource
+from import_export.formats import base_formats
 
-
-admin.site.register(Category, MPTTModelAdmin)
+EXPORT_FORMATS = (
+        base_formats.CSV,
+        base_formats.XLS,
+        base_formats.ODS,
+        base_formats.JSON,
+        base_formats.HTML,
+    )
 
 
 class ProductInline(admin.TabularInline):
@@ -25,18 +31,42 @@ class ProductAdmin(ImportExportModelAdmin):
     inlines = [ProductInline, ProductImageInline]
     resource_class = ProductResource
     exclude = ['slug']
+    formats = EXPORT_FORMATS
 
 
 admin.site.register(Product, ProductAdmin)
-
-admin.site.register(Partner)
-
-admin.site.register(Brand)
 
 
 class ProductCharacteristicAdmin(ImportExportModelAdmin):
     list_filter = ['product', 'name']
     list_display = ['product']
+    formats = EXPORT_FORMATS
 
 
 admin.site.register(ProductCharacteristic, ProductCharacteristicAdmin)
+
+
+# class CategoryAdmin(ImportExportModelAdmin):
+    # formats = EXPORT_FORMATS
+
+
+class BrandAdmin(ImportExportModelAdmin):
+    formats = EXPORT_FORMATS
+
+
+admin.site.register(Brand, BrandAdmin)
+
+
+class PartnerAdmin(ImportExportModelAdmin):
+    formats = EXPORT_FORMATS
+
+
+admin.site.register(Partner, PartnerAdmin)
+
+
+class CategoryAdmin(MPTTModelAdmin):
+    exclude = ['slug', ]
+
+
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(FeedBack)

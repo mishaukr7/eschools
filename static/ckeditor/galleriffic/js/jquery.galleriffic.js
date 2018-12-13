@@ -314,7 +314,7 @@
 				if (preloadCount < 0)
 					preloadCount = this.data.length-1-startIndex+currentIndex;
 				if (this.preloadAhead >= 0 && preloadCount > this.preloadAhead) {
-					// Do this in orders to keep checking for relocated start index
+					// Do this in order to keep checking for relocated start index
 					setTimeout(function() { gallery.preloadRecursive(startIndex, currentIndex); }, 500);
 					return this;
 				}
@@ -341,7 +341,7 @@
 				return this;
 			},
 			
-			// Called by preloadRecursive in orders to preload the next image after the previous has loaded.
+			// Called by preloadRecursive in order to preload the next image after the previous has loaded.
 			// @param {Integer} startIndex The index of the first image the current preloader started on.
 			// @param {Integer} currentIndex The index of the current image to preload.
 			preloadNext: function(startIndex, currentIndex) {

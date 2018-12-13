@@ -1,0 +1,13 @@
+@import "index/index";
+
+@media (max-width: 1200px) {
+    @import "index/index-max-1200";
+}
+
+@media (max-width: 991px) {
+    @import "index/index-max-992";
+}
+
+@media (max-width: 767px) {
+    @import "index/index-max-767";
+}

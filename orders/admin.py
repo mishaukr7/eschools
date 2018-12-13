@@ -1,5 +1,5 @@
 from django.contrib import admin
-from orders.models import OrderItem, Order
+from .models import OrderItem, Order
 from import_export.admin import ImportExportModelAdmin
 
 

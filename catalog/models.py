@@ -43,10 +43,15 @@ class Category(MPTTModel):
     def get_absolute_url(self):
         return f'categories/{self.slug}/'
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
+
 
 class Product(models.Model):
     category = TreeForeignKey('Category', null=True, blank=True, verbose_name='Категорія товару',
                               on_delete=models.SET_NULL)
+    product_code = models.CharField(max_length=20, blank=True, null=True, verbose_name='Код товару')
     brand = models.ForeignKey('Brand', models.CASCADE, blank=True, null=True)
     slug = models.SlugField()
     name = models.CharField(max_length=200, db_index=True, verbose_name='Назва товару')
@@ -64,7 +69,7 @@ class Product(models.Model):
              update_fields=None):
         self.slug = slugify(self.name)
         super(Product, self).save(force_insert=False, force_update=False, using=None,
-             update_fields=None)
+                                  update_fields=None)
 
     class Meta:
         ordering = ['name']

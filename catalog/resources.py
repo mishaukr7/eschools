@@ -1,6 +1,6 @@
 from import_export import resources, fields
 from import_export.widgets import ForeignKeyWidget
-from .models import Product, ProductCharacteristic, Category, Brand
+from .models import Product, ProductCharacteristic, Category, Brand, Partner
 from django.utils.encoding import force_text
 import tablib.core
 from django.db.models.query import QuerySet
@@ -15,13 +15,21 @@ class ProductResource(resources.ModelResource):
 
     brand = fields.Field(
         column_name='brand',
-        attribute='column',
-        widget=ForeignKeyWidget(Brand)
+        attribute='brand',
+        widget=ForeignKeyWidget(Brand, )
+    )
+
+    partner = fields.Field(
+        column_name='partner',
+        attribute='partner',
+        widget=ForeignKeyWidget(Partner, )
     )
 
     class Meta:
         model = Product
-        exclude = ['slug']
+        exclude = ['slug', 'created', 'updated']
+        export_order = ['id', 'name', 'category', 'brand', 'description', 'price', 'price_with_discount',
+                        'review_video', 'review_video', 'available', 'partner', 'best']
 
     # def get_export_headers(self):
     #     headers = [

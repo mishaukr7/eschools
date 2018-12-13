@@ -1,38 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% load static %}
 
-<head>
+{% block meta_tags %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ескул Интерент Магазин</title>
-    {% load static %}
+{% endblock meta_tags %}
+
+{% block title %} E-Schools {% endblock title %}
+
+{% block stylesheets %}
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700,900" rel="stylesheet">
     <link href="{% static 'app/css/main.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'app/css/slick.css' %}">
-</head>
+{% endblock stylesheets %}
 
-<body>
+{% block javascript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="{% static 'app/js/slick.js' %}"></script>
+    <script src="{% static 'app/js/main.js' %}"></script>
+{% endblock javascript %}
+
+{% block header %}
+{% load mptt_tags %}
     <header>
         <div class="container">
             <div class="flex-between">
                 <div class="logo">
-                    <a href="index.html"><img src="image/e-schools.png" alt=""></a>
+                    <a href="index.html"><img src="{% static 'app/image/e-schools.png' %}" alt=""></a>
                 </div>
                 <div>
                     <div class="header-top">
                         <div class="row">
                             <p>(044) 333-24-44</p>
                             <p>(055) 310-14-24</p>
-                            <div class="call-me js-button-call"><img src="image/smartphone.svg" alt="">
-                                <p><span>Перезвоните мне</span></p>
+                            <div class="call-me js-button-call"><img src="{% static 'app/image/smartphone.svg' %}" alt="">
+                                <p><span>Передзвоніть мені</span></p>
                             </div>
 
                             <div class="come-or-check row">
                                 <div class="come-in js-button-come">
-                                    <img src="image/come-in.svg" alt="">Вход
+                                    <img src="{% static 'app/image/come-in.svg' %}" alt="">Вхід
                                 </div>
-                                / <div class="check-in js-button-registration">Регистрация</div>
+                                / <div class="check-in js-button-registration">Реєстрація</div>
                             </div>
                         </div>
                     </div>
@@ -51,20 +61,26 @@
             <div class="flex-between">
                 <div class="drop-menu static">
                     <button class="button-menu"><img src="" alt="">Услуги и товары</button>
+
                     <ul>
-                        <li>Страхование
+                        {% recursetree category_tree %}
+                        <li> {{ node.name }}
                             <div class="menu-block white">
                                 <div class="row">
                                     <div class="menu-block-left">
                                         <div class="row">
+                                            {% if not node.is_leaf_node %}
                                             <div class="box flex-colomn">
-                                                <h4>Турникеты</h4>
-                                                <a href="#">Centurion</a>
+                                                <h4>{{children}}</h4>
+                                                {% if not children.is_leaf_node %}
+                                                <a href="#"></a>
                                                 <a href="">FORMA</a>
                                                 <a href="">Bastion</a>
                                                 <a href="">Galaxy</a>
                                                 <a href="">Twix</a>
+                                                {% endif %}
                                             </div>
+                                            {% endif %}
                                             <div class="box">
                                                 <h4>Компьютерная техника
                                                 </h4>
@@ -101,965 +117,31 @@
                                         </div>
                                     </div>
                                     <div class="menu-block-right">
-                                        <img src="image/ekran.png" alt="">
+                                        <img src="{% static 'app/image/ekran.png' %}" alt="">
                                     </div>
                                 </div>
                             </div>
                         </li>
-
-                        <li>Обучение <div class="menu-block white">
-                                <div class="row">
-                                    <div class="menu-block-left">
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Турникеты</h4>
-                                                <a href="#">Centurion</a>
-                                                <a href="">FORMA</a>
-                                                <a href="">Bastion</a>
-                                                <a href="">Galaxy</a>
-                                                <a href="">Twix</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Компьютерная техника
-                                                </h4>
-                                                <a href="#">Ноутбуки и планшеты</a>
-                                                <a href="">Компьютеры и комплектующие</a>
-                                                <a href="">Мониторы</a>
-                                                <a href="">Переферия</a>
-                                                <a href="">Сетевое оборудование</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Видеонаблюдение</h4>
-                                                <a href="#">1C Video Lite Camera</a>
-                                                <a href="">
-                                                    Yi Home Camera</a>
-                                                <a href="">
-                                                    CoVi Security</a>
-                                                <a href="">DaHua KIT </a>
-                                                <a href="">Tecsar MEGA</a>
-                                                <a href="">Security Time</a>
-                                                <a href="">West Digital</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Оргтехника</h4>
-                                                <a href="#">Принтеры</a>
-                                                <a href="">Сканеры</a>
-                                                <a href="">Расходные материалы</a>
-                                                <a href="">МФУ</a>
-                                                <a href="">Кабели для принтеров</a>
-                                                <a href="">К Кабели для сканеров</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-block-right">
-                                        <img src="image/ekran.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-
-                        </li>
-
-
-                        <li>Техника <div class="menu-block white">
-                                <div class="row">
-                                    <div class="menu-block-left">
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Турникеты</h4>
-                                                <a href="#">Centurion</a>
-                                                <a href="">FORMA</a>
-                                                <a href="">Bastion</a>
-                                                <a href="">Galaxy</a>
-                                                <a href="">Twix</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Компьютерная техника
-                                                </h4>
-                                                <a href="#">Ноутбуки и планшеты</a>
-                                                <a href="">Компьютеры и комплектующие</a>
-                                                <a href="">Мониторы</a>
-                                                <a href="">Переферия</a>
-                                                <a href="">Сетевое оборудование</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Видеонаблюдение</h4>
-                                                <a href="#">1C Video Lite Camera</a>
-                                                <a href="">
-                                                    Yi Home Camera</a>
-                                                <a href="">
-                                                    CoVi Security</a>
-                                                <a href="">DaHua KIT </a>
-                                                <a href="">Tecsar MEGA</a>
-                                                <a href="">Security Time</a>
-                                                <a href="">West Digital</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Оргтехника</h4>
-                                                <a href="#">Принтеры</a>
-                                                <a href="">Сканеры</a>
-                                                <a href="">Расходные материалы</a>
-                                                <a href="">МФУ</a>
-                                                <a href="">Кабели для принтеров</a>
-                                                <a href="">К Кабели для сканеров</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-block-right">
-                                        <img src="image/ekran.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-
-                        </li>
-
-                        <li>Оборудование для школ <div class="menu-block white">
-                                <div class="row">
-                                    <div class="menu-block-left">
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Турникеты</h4>
-                                                <a href="#">Centurion</a>
-                                                <a href="">FORMA</a>
-                                                <a href="">Bastion</a>
-                                                <a href="">Galaxy</a>
-                                                <a href="">Twix</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Компьютерная техника
-                                                </h4>
-                                                <a href="#">Ноутбуки и планшеты</a>
-                                                <a href="">Компьютеры и комплектующие</a>
-                                                <a href="">Мониторы</a>
-                                                <a href="">Переферия</a>
-                                                <a href="">Сетевое оборудование</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Видеонаблюдение</h4>
-                                                <a href="#">1C Video Lite Camera</a>
-                                                <a href="">
-                                                    Yi Home Camera</a>
-                                                <a href="">
-                                                    CoVi Security</a>
-                                                <a href="">DaHua KIT </a>
-                                                <a href="">Tecsar MEGA</a>
-                                                <a href="">Security Time</a>
-                                                <a href="">West Digital</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Оргтехника</h4>
-                                                <a href="#">Принтеры</a>
-                                                <a href="">Сканеры</a>
-                                                <a href="">Расходные материалы</a>
-                                                <a href="">МФУ</a>
-                                                <a href="">Кабели для принтеров</a>
-                                                <a href="">К Кабели для сканеров</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-block-right">
-                                        <img src="image/ekran.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>Оборудование для
-                            инклюзивных классов <div class="menu-block white">
-                                <div class="row">
-                                    <div class="menu-block-left">
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Турникеты</h4>
-                                                <a href="#">Centurion</a>
-                                                <a href="">FORMA</a>
-                                                <a href="">Bastion</a>
-                                                <a href="">Galaxy</a>
-                                                <a href="">Twix</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Компьютерная техника
-                                                </h4>
-                                                <a href="#">Ноутбуки и планшеты</a>
-                                                <a href="">Компьютеры и комплектующие</a>
-                                                <a href="">Мониторы</a>
-                                                <a href="">Переферия</a>
-                                                <a href="">Сетевое оборудование</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Видеонаблюдение</h4>
-                                                <a href="#">1C Video Lite Camera</a>
-                                                <a href="">
-                                                    Yi Home Camera</a>
-                                                <a href="">
-                                                    CoVi Security</a>
-                                                <a href="">DaHua KIT </a>
-                                                <a href="">Tecsar MEGA</a>
-                                                <a href="">Security Time</a>
-                                                <a href="">West Digital</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Оргтехника</h4>
-                                                <a href="#">Принтеры</a>
-                                                <a href="">Сканеры</a>
-                                                <a href="">Расходные материалы</a>
-                                                <a href="">МФУ</a>
-                                                <a href="">Кабели для принтеров</a>
-                                                <a href="">К Кабели для сканеров</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-block-right">
-                                        <img src="image/ekran.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>Канцтовары <div class="menu-block white">
-                                <div class="row">
-                                    <div class="menu-block-left">
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Турникеты</h4>
-                                                <a href="#">Centurion</a>
-                                                <a href="">FORMA</a>
-                                                <a href="">Bastion</a>
-                                                <a href="">Galaxy</a>
-                                                <a href="">Twix</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Компьютерная техника
-                                                </h4>
-                                                <a href="#">Ноутбуки и планшеты</a>
-                                                <a href="">Компьютеры и комплектующие</a>
-                                                <a href="">Мониторы</a>
-                                                <a href="">Переферия</a>
-                                                <a href="">Сетевое оборудование</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Видеонаблюдение</h4>
-                                                <a href="#">1C Video Lite Camera</a>
-                                                <a href="">
-                                                    Yi Home Camera</a>
-                                                <a href="">
-                                                    CoVi Security</a>
-                                                <a href="">DaHua KIT </a>
-                                                <a href="">Tecsar MEGA</a>
-                                                <a href="">Security Time</a>
-                                                <a href="">West Digital</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Оргтехника</h4>
-                                                <a href="#">Принтеры</a>
-                                                <a href="">Сканеры</a>
-                                                <a href="">Расходные материалы</a>
-                                                <a href="">МФУ</a>
-                                                <a href="">Кабели для принтеров</a>
-                                                <a href="">К Кабели для сканеров</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-block-right">
-                                        <img src="image/ekran.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>Школьные принадлежности <div class="menu-block white">
-                                <div class="row">
-                                    <div class="menu-block-left">
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Турникеты</h4>
-                                                <a href="#">Centurion</a>
-                                                <a href="">FORMA</a>
-                                                <a href="">Bastion</a>
-                                                <a href="">Galaxy</a>
-                                                <a href="">Twix</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Компьютерная техника
-                                                </h4>
-                                                <a href="#">Ноутбуки и планшеты</a>
-                                                <a href="">Компьютеры и комплектующие</a>
-                                                <a href="">Мониторы</a>
-                                                <a href="">Переферия</a>
-                                                <a href="">Сетевое оборудование</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Видеонаблюдение</h4>
-                                                <a href="#">1C Video Lite Camera</a>
-                                                <a href="">
-                                                    Yi Home Camera</a>
-                                                <a href="">
-                                                    CoVi Security</a>
-                                                <a href="">DaHua KIT </a>
-                                                <a href="">Tecsar MEGA</a>
-                                                <a href="">Security Time</a>
-                                                <a href="">West Digital</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Оргтехника</h4>
-                                                <a href="#">Принтеры</a>
-                                                <a href="">Сканеры</a>
-                                                <a href="">Расходные материалы</a>
-                                                <a href="">МФУ</a>
-                                                <a href="">Кабели для принтеров</a>
-                                                <a href="">К Кабели для сканеров</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-block-right">
-                                        <img src="image/ekran.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>Мебель для школ <div class="menu-block white">
-                                <div class="row">
-                                    <div class="menu-block-left">
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Турникеты</h4>
-                                                <a href="#">Centurion</a>
-                                                <a href="">FORMA</a>
-                                                <a href="">Bastion</a>
-                                                <a href="">Galaxy</a>
-                                                <a href="">Twix</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Компьютерная техника
-                                                </h4>
-                                                <a href="#">Ноутбуки и планшеты</a>
-                                                <a href="">Компьютеры и комплектующие</a>
-                                                <a href="">Мониторы</a>
-                                                <a href="">Переферия</a>
-                                                <a href="">Сетевое оборудование</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Видеонаблюдение</h4>
-                                                <a href="#">1C Video Lite Camera</a>
-                                                <a href="">
-                                                    Yi Home Camera</a>
-                                                <a href="">
-                                                    CoVi Security</a>
-                                                <a href="">DaHua KIT </a>
-                                                <a href="">Tecsar MEGA</a>
-                                                <a href="">Security Time</a>
-                                                <a href="">West Digital</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Оргтехника</h4>
-                                                <a href="#">Принтеры</a>
-                                                <a href="">Сканеры</a>
-                                                <a href="">Расходные материалы</a>
-                                                <a href="">МФУ</a>
-                                                <a href="">Кабели для принтеров</a>
-                                                <a href="">К Кабели для сканеров</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-block-right">
-                                        <img src="image/ekran.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>Детские товары <div class="menu-block white">
-                                <div class="row">
-                                    <div class="menu-block-left">
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Турникеты</h4>
-                                                <a href="#">Centurion</a>
-                                                <a href="">FORMA</a>
-                                                <a href="">Bastion</a>
-                                                <a href="">Galaxy</a>
-                                                <a href="">Twix</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Компьютерная техника
-                                                </h4>
-                                                <a href="#">Ноутбуки и планшеты</a>
-                                                <a href="">Компьютеры и комплектующие</a>
-                                                <a href="">Мониторы</a>
-                                                <a href="">Переферия</a>
-                                                <a href="">Сетевое оборудование</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Видеонаблюдение</h4>
-                                                <a href="#">1C Video Lite Camera</a>
-                                                <a href="">
-                                                    Yi Home Camera</a>
-                                                <a href="">
-                                                    CoVi Security</a>
-                                                <a href="">DaHua KIT </a>
-                                                <a href="">Tecsar MEGA</a>
-                                                <a href="">Security Time</a>
-                                                <a href="">West Digital</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Оргтехника</h4>
-                                                <a href="#">Принтеры</a>
-                                                <a href="">Сканеры</a>
-                                                <a href="">Расходные материалы</a>
-                                                <a href="">МФУ</a>
-                                                <a href="">Кабели для принтеров</a>
-                                                <a href="">К Кабели для сканеров</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-block-right">
-                                        <img src="image/ekran.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>Спортивные товары <div class="menu-block white">
-                                <div class="row">
-                                    <div class="menu-block-left">
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Турникеты</h4>
-                                                <a href="#">Centurion</a>
-                                                <a href="">FORMA</a>
-                                                <a href="">Bastion</a>
-                                                <a href="">Galaxy</a>
-                                                <a href="">Twix</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Компьютерная техника
-                                                </h4>
-                                                <a href="#">Ноутбуки и планшеты</a>
-                                                <a href="">Компьютеры и комплектующие</a>
-                                                <a href="">Мониторы</a>
-                                                <a href="">Переферия</a>
-                                                <a href="">Сетевое оборудование</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Видеонаблюдение</h4>
-                                                <a href="#">1C Video Lite Camera</a>
-                                                <a href="">
-                                                    Yi Home Camera</a>
-                                                <a href="">
-                                                    CoVi Security</a>
-                                                <a href="">DaHua KIT </a>
-                                                <a href="">Tecsar MEGA</a>
-                                                <a href="">Security Time</a>
-                                                <a href="">West Digital</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Оргтехника</h4>
-                                                <a href="#">Принтеры</a>
-                                                <a href="">Сканеры</a>
-                                                <a href="">Расходные материалы</a>
-                                                <a href="">МФУ</a>
-                                                <a href="">Кабели для принтеров</a>
-                                                <a href="">К Кабели для сканеров</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-block-right">
-                                        <img src="image/ekran.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li><span>Акции</span>
-                            <div class="menu-block white">
-                                <img src="image/new.png" alt="">
-
-                            </div>
-                        </li>
-
-                        <li>Выставки <div class="menu-block white">
-                                <div class="row">
-                                    <div class="menu-block-left">
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Турникеты</h4>
-                                                <a href="#">Centurion</a>
-                                                <a href="">FORMA</a>
-                                                <a href="">Bastion</a>
-                                                <a href="">Galaxy</a>
-                                                <a href="">Twix</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Компьютерная техника
-                                                </h4>
-                                                <a href="#">Ноутбуки и планшеты</a>
-                                                <a href="">Компьютеры и комплектующие</a>
-                                                <a href="">Мониторы</a>
-                                                <a href="">Переферия</a>
-                                                <a href="">Сетевое оборудование</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Видеонаблюдение</h4>
-                                                <a href="#">1C Video Lite Camera</a>
-                                                <a href="">
-                                                    Yi Home Camera</a>
-                                                <a href="">
-                                                    CoVi Security</a>
-                                                <a href="">DaHua KIT </a>
-                                                <a href="">Tecsar MEGA</a>
-                                                <a href="">Security Time</a>
-                                                <a href="">West Digital</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Оргтехника</h4>
-                                                <a href="#">Принтеры</a>
-                                                <a href="">Сканеры</a>
-                                                <a href="">Расходные материалы</a>
-                                                <a href="">МФУ</a>
-                                                <a href="">Кабели для принтеров</a>
-                                                <a href="">К Кабели для сканеров</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-block-right">
-                                        <img src="image/ekran.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>Мастер классы <div class="menu-block white">
-                                <div class="row">
-                                    <div class="menu-block-left">
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Турникеты</h4>
-                                                <a href="#">Centurion</a>
-                                                <a href="">FORMA</a>
-                                                <a href="">Bastion</a>
-                                                <a href="">Galaxy</a>
-                                                <a href="">Twix</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Компьютерная техника
-                                                </h4>
-                                                <a href="#">Ноутбуки и планшеты</a>
-                                                <a href="">Компьютеры и комплектующие</a>
-                                                <a href="">Мониторы</a>
-                                                <a href="">Переферия</a>
-                                                <a href="">Сетевое оборудование</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Видеонаблюдение</h4>
-                                                <a href="#">1C Video Lite Camera</a>
-                                                <a href="">
-                                                    Yi Home Camera</a>
-                                                <a href="">
-                                                    CoVi Security</a>
-                                                <a href="">DaHua KIT </a>
-                                                <a href="">Tecsar MEGA</a>
-                                                <a href="">Security Time</a>
-                                                <a href="">West Digital</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Оргтехника</h4>
-                                                <a href="#">Принтеры</a>
-                                                <a href="">Сканеры</a>
-                                                <a href="">Расходные материалы</a>
-                                                <a href="">МФУ</a>
-                                                <a href="">Кабели для принтеров</a>
-                                                <a href="">К Кабели для сканеров</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-block-right">
-                                        <img src="image/ekran.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        {% endrecursetree %}
                     </ul>
                 </div>
                 <div class="header-right-block">
                     <div class="search">
                         <div class="row">
                             <div class="block-input-search row"><input type="text">
-                                <button><img src="image/magnifying-glass%20(1).svg" alt=""></button></div>
+                                <button><img src="{% static 'app/image/magnifying-glass%20(1).svg' %}" alt=""></button></div>
                             <div class="basket-block js-button-basket">
-                                <img src="image/shopping-basket-button.svg" alt="">
+                                <img src="{% static 'app/image/shopping-basket-button.svg' %}" alt="">
                                 <span>1</span>
                             </div>
                         </div>
                     </div>
                     <div class="header-slider">
-                        <img src="image/projectSlider.jpg" alt="non">
+                        <img src="{% static 'app/image/projectSlider.jpg' %}" alt="non">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="test-popup js-overlay-call">
-            <div class="popup-come js-popup-call">
-                <img class="popup-close js-close-call" src="image/xrest.png" alt="">
-                <h3>Обратный звонок</h3>
-                <p>Введите Ваш номер мобильного телефона
-                    и наш оператор перезвонит Вам в ближайшее время.</p>
-                <form action="">
-                    <h4>Ваше Имя</h4>
-                    <input type="text" required>
-                    <h4>Ваш номер телефона </h4>
-                    <input type="tel" required>
-                    <button class="button-tell">Заказать звонок </button>
-                </form>
-            </div>
-        </div>
-        <div class="test-popup js-overlay-registration">
-            <div class="popup-come js-popup-registration">
-                <img class="popup-close js-close-registration" src="image/xrest.png" alt="">
-                <h3>Регистрация </h3>
-                <form action="">
-                    <h4>Ваше имя</h4>
-                    <input type="text" required>
-                    <h4>Ваш номер телефона </h4>
-                    <input type="tel" required>
-                    <h4>Ваш пароль </h4>
-                    <input type="password" required>
-                    <h4>Ваш E-mail</h4>
-                    <input type="email" required>
-
-                    <p class="remember row">
-                        <input class="remember-input" type="checkbox" name="rememberme" value="1">
-                        Я пользователь портала
-                    </p>
-                    <h4>Ваш ID</h4>
-                    <input type="text" required>
-                    <button class="button-continue">Продолжить</button>
-                    <p class="botton-or-p">или <br><span class="js-close-registration js-button-come">войти</span></p>
-                </form>
-            </div>
-        </div>
-
-        <div class="test-popup js-overlay-come">
-            <div class="popup-come js-popup-come">
-                <img class="popup-close js-close-come" src="image/xrest.png" alt="">
-                <h3>Вход в личный кабинет</h3>
-                <form action="">
-                    <h4>Ваш номер телефона </h4>
-                    <input type="tel" required>
-                    <h4>Ваш пароль </h4>
-                    <input type="password" required>
-                    <p class="remember row">
-                        <input class="remember-input" type="checkbox" name="rememberme" value="1">
-                        Запомнить меня
-                    </p>
-
-                    <button class="button-come">Войти в аккаунт </button>
-                    <p class="botton-or-p"> или <br><span class="js-close-come js-button-registration">зарегистрироваться</span></p>
-                </form>
-            </div>
-        </div>
-        <div class="test-popup js-overlay-basket">
-            <div class="popup-basket js-popup-basket">
-                <img class="popup-close js-close-basket" src="image/xrest.png" alt="">
-                <h3>Корзина с товаром </h3>
-                <form action="">
-                    <div class="box-basket row">
-                        <img src="image/playstation.png" alt="">
-                        <p>Холодильник Vestfrost CX263W <br><span>Код: 1292354</span></p>
-                        <div class="basket-number">- 1 +</div>
-                        <h4>7 999 грн</h4>
-                        <img class="delete-basket" src="image/delete-photo.svg" alt="">
-                    </div>
-                    <div class="basket-sum">
-                        <p>Итого:</p>
-                        <h2>35 699 грн</h2>
-                    </div>
-                    <a class="button-checkout" href="checkout.html">  Оформить заказ </a>
-                </form>
-
-            </div>
-        </div>
-
     </header>
 
-    <!--
-    <section class="">
-       
-    </section>
--->
-
-
-
-    <section class="best-product">
-        <div class="container">
-            <h2>Лучшие товары месяца</h2>
-            <div class="best-product-container">
-                <a href="">
-                    <div class="best-product-boxes">
-                        <div class="row">
-                            <h3>Acer Aspire
-                                DDR3 SDRAM</h3>
-                            <div class="box-sale">-34%</div>
-                        </div>
-                        <div class="box-img"><img src="image/playstation.png" alt=""></div>
-                        <p><span>9 999 грн</span><br>7 999 грн</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="best-product-boxes">
-                        <div class="row">
-                            <h3>Acer Aspire
-                                DDR3 SDRAM</h3>
-                            <div class="box-sale-new">NEW!</div>
-                        </div>
-                        <div class="box-img"><img src="image/ekran.png" alt=""></div>
-                        <p><span></span><br>7 999 грн</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="best-product-boxes">
-                        <div class="row">
-                            <h3>Acer Aspire
-                                DDR3 SDRAM</h3>
-                            <div class="box-sale">-34%</div>
-                        </div>
-                        <div class="box-img"><img src="image/playstation.png" alt=""></div>
-                        <p><span>9 999 грн</span><br>7 999 грн</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="best-product-boxes">
-                        <div class="row">
-                            <h3>Acer Aspire
-                                DDR3 SDRAM</h3>
-                            <div class="box-sale">-34%</div>
-                        </div>
-                        <div class="box-img"><img src="image/playstation.png" alt=""></div>
-                        <p><span>9 999 грн</span><br>7 999 грн</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="best-product-boxes">
-                        <div class="row">
-                            <h3>Acer Aspire
-                                DDR3 SDRAM</h3>
-                            <div class="box-sale">-34%</div>
-                        </div>
-                        <div class="box-img"><img src="image/playstation.png" alt=""></div>
-                        <p><span>9 999 грн</span><br>7 999 грн</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="best-product-boxes">
-                        <div class="row">
-                            <h3>Acer Aspire
-                                DDR3 SDRAM</h3>
-                            <div class="box-sale">-34%</div>
-                        </div>
-                        <div class="box-img"><img src="image/playstation.png" alt=""></div>
-                        <p><span>9 999 грн</span><br>7 999 грн</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="best-product-boxes">
-                        <div class="row">
-                            <h3>Acer Aspire
-                                DDR3 SDRAM</h3>
-                            <div class="box-sale">-34%</div>
-                        </div>
-                        <div class="box-img"><img src="image/playstation.png" alt=""></div>
-                        <p><span>9 999 грн</span><br>7 999 грн</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="best-product-boxes">
-                        <div class="row">
-                            <h3>Acer Aspire
-                                DDR3 SDRAM</h3>
-                            <div class="box-sale">-34%</div>
-                        </div>
-                        <div class="box-img"><img src="image/playstation.png" alt=""></div>
-                        <p><span>9 999 грн</span><br>7 999 грн</p>
-                    </div>
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-
-    <section class="new-product white">
-        <div class="container">
-            <h2>Новинки</h2>
-            <div class="slider-new-product">
-                <a href="">
-                    <div class="box-new-product">
-                        <img src="image/ekran.png" alt="">
-                        <p>Игровая консоль SONY PlayStation 4 Pro 1TB + (FIFA19)</p>
-                        <h2>11600 грн</h2>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="box-new-product">
-                        <img src="image/ekran.png" alt="">
-                        <p>Игровая консоль SONY PlayStation 4 Pro 1TB + (FIFA19)</p>
-                        <h2>11600 грн</h2>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="box-new-product">
-                        <img src="image/ekran.png" alt="">
-                        <p>Игровая консоль SONY PlayStation 4 Pro 1TB + (FIFA19)</p>
-                        <h2>11600 грн</h2>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="box-new-product">
-                        <img src="image/ekran.png" alt="">
-                        <p>Игровая консоль SONY PlayStation 4 Pro 1TB + (FIFA19)</p>
-                        <h2>11600 грн</h2>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="box-new-product">
-                        <img src="image/ekran.png" alt="">
-                        <p>Игровая консоль SONY PlayStation 4 Pro 1TB + (FIFA19)</p>
-                        <h2>11600 грн</h2>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="box-new-product">
-                        <img src="image/ekran.png" alt="">
-                        <p>Игровая консоль SONY PlayStation 4 Pro 1TB + (FIFA19)</p>
-                        <h2>11600 грн</h2>
-                    </div>
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="last-news">
-        <div class="container">
-            <h2>Последние новости</h2>
-            <div class="flex-between">
-                <div class="news-box">
-                    <img src="image/Bitmap%20(4).png" alt="">
-                    <h3>САП завела уголовное дело против Сытника. </h3>
-                    <p>Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации Многие программы электронной вёрстки и редакторы HTML используют…
-                    </p>
-                    <a href="">Читать подробнее ></a>
-                </div>
-                <div class="news-box">
-                    <img src="image/Bitmap%20(2).png" alt="">
-
-                    <h3>САП завела уголовное дело против Сытника. </h3>
-                    <p>Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации Многие программы электронной вёрстки и редакторы HTML используют…
-                    </p>
-                    <a href="">Читать подробнее ></a>
-                </div>
-                <div class="news-box">
-                    <img src="image/Bitmap%20(3).png" alt="">
-
-                    <h3>САП завела уголовное дело против Сытника. </h3>
-                    <p>Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации Многие программы электронной вёрстки и редакторы HTML используют…
-                    </p>
-                    <a href="">Читать подробнее ></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <footer class="white">
-        <div class="container-footer">
-            <div class="flex-between">
-                <div class="flex-column">
-                    <h3>Компания
-                    </h3>
-                    <a href="">О нас</a>
-                    <a href="">Контакты</a>
-                </div>
-                <div class="flex-column">
-                    <h3>Помощь</h3>
-                    <a href="">Доставка и оплата</a>
-                    <a href="">Гарантии</a>
-                    <a href="">Помощь</a>
-                    <a href="">Публичная оферта</a>
-                </div>
-                <div class="flex-column">
-                    <h3>Полезная информация</h3>
-                    <a href="">Акции</a>
-                    <a href="">Новости и статьи</a>
-                    <a href="">Карта сайта</a>
-                    <a href="">Сотрудничество</a>
-                </div>
-                <div class="flex-column">
-                    <h3>График работы Call-центра</h3>
-                    <p>Пн-Пт: с 09:00 до 20:00</p>
-                    <p>Сб: с 10:00 до 18:00</p>
-                    <p>Вс: с 10:00 до 17:00</p>
-                </div>
-            </div>
-            <div class="flex-between">
-                <div class="icon-net">
-                    <h4>Мы в социальных сетях :</h4>
-                    <div class="flex-between">
-                        <a href="" class="icon-footer facebook"></a>
-                        <a href="" class="icon-footer instagram"></a>
-                        <a href="" class="icon-footer twitter"></a>
-                        <a href="" class="icon-footer google"></a>
-                    </div>
-                </div>
-                <form class="subscribe">
-                    <h4>Подпишитесь и получайте акции,<br>
-                        новости и спецпредложения</h4>
-                    <div class="row">
-                        <input type="text" placeholder="Введите Ваш E-mail">
-                        <button><img src="image/send-button.svg" alt=""></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="botton-footer">
-            <h4>© Интернет-магазин «Eschools» 2018</h4>
-        </div>
-    </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="{% static 'app/js/slick.js' %}"></script>
-    <script src="{% static 'app/js/main.js' %}"></script>
-</body>
-
-</html>
+{% endblock header %}

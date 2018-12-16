@@ -17,13 +17,11 @@ $('.slider-new-product').slick({
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    prevArrow: '<img class="slick-prev" src="image/arr_l.png">',
-    nextArrow: '<img class="slick-next" src="image/arr_r.png">'
+    prevArrow: arr_l,
+    nextArrow: arr_r
 });
 
 $('.drop-menu').toggleClass("visible");
-
-
 
 
 // открыть по кнопке

@@ -13,7 +13,7 @@
 
 
 <body>
-   <header>
+    <header>
         <div class="container">
             <div class="flex-between">
                 <div class="logo">
@@ -24,15 +24,15 @@
                         <div class="row">
                             <p>(044) 333-24-44</p>
                             <p>(055) 310-14-24</p>
-                            <div class="call-me"><img src="image/smartphone.svg" alt="">
-                                <a href="popup.html"><p><span>Перезвоните мне</span></p></a>
+                            <div class="call-me js-button-call"><img src="image/smartphone.svg" alt="">
+                                <p><span>Перезвоните мне</span></p>
                             </div>
-                            <div class="come-or-check row">
 
-                                <div class="come-in">
-                                    <a href="popup.html"><img src="image/come-in.svg" alt="">Вход</a>
+                            <div class="come-or-check row">
+                                <div class="come-in js-button-come">
+                                    <img src="image/come-in.svg" alt="">Вход
                                 </div>
-                                / <a href="popup.html"><div class="check-in">Регистрация</div></a>
+                                / <div class="check-in js-button-registration">Регистрация</div>
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="flex-between">
-                <div class="drop-menu">
+                <div class="drop-menu static">
                     <button class="button-menu"><img src="" alt="">Услуги и товары</button>
                     <ul>
                         <li>Страхование
@@ -597,9 +597,10 @@
                             </div>
                         </li>
 
-                        <li><span>Акции</span> <div class="menu-block white">
+                        <li><span>Акции</span>
+                            <div class="menu-block white">
                                 <img src="image/new.png" alt="">
-                               
+
                             </div>
                         </li>
 
@@ -717,16 +718,101 @@
                         <div class="row">
                             <div class="block-input-search row"><input type="text">
                                 <button><img src="image/magnifying-glass%20(1).svg" alt=""></button></div>
-
-                            <button><img src="image/%D0%92%D0%B8%D1%88%D0%BB%D0%B8%D1%81%D1%82.svg" alt=""></button>
-
-                            <button><img src="image/shopping-basket-button.svg" alt=""></button>
+                            <div class="basket-block js-button-basket">
+                                <img src="image/shopping-basket-button.svg" alt="">
+                                <span>1</span>
+                            </div>
                         </div>
+                    </div>
+                    <div class="header-slider">
+                        <img src="image/projectSlider.jpg" alt="non">
                     </div>
                 </div>
             </div>
         </div>
+        <div class="test-popup js-overlay-call">
+            <div class="popup-come js-popup-call">
+                <img class="popup-close js-close-call" src="image/xrest.png" alt="">
+                <h3>Обратный звонок</h3>
+                <p>Введите Ваш номер мобильного телефона
+                    и наш оператор перезвонит Вам в ближайшее время.</p>
+                <form action="">
+                    <h4>Ваше Имя</h4>
+                    <input type="text" required>
+                    <h4>Ваш номер телефона </h4>
+                    <input type="tel" required>
+                    <button class="button-tell">Заказать звонок </button>
+                </form>
+            </div>
+        </div>
+        <div class="test-popup js-overlay-registration">
+            <div class="popup-come js-popup-registration">
+                <img class="popup-close js-close-registration" src="image/xrest.png" alt="">
+                <h3>Регистрация </h3>
+                <form action="">
+                    <h4>Ваше имя</h4>
+                    <input type="text" required>
+                    <h4>Ваш номер телефона </h4>
+                    <input type="tel" required>
+                    <h4>Ваш пароль </h4>
+                    <input type="password" required>
+                    <h4>Ваш E-mail</h4>
+                    <input type="email" required>
+
+                    <p class="remember row">
+                        <input class="remember-input" type="checkbox" name="rememberme" value="1">
+                        Я пользователь портала
+                    </p>
+                    <h4>Ваш ID</h4>
+                    <input type="text" required>
+                    <button class="button-continue">Продолжить</button>
+                    <p class="botton-or-p">или <br><span class="js-close-registration js-button-come">войти</span></p>
+                </form>
+            </div>
+        </div>
+
+        <div class="test-popup js-overlay-come">
+            <div class="popup-come js-popup-come">
+                <img class="popup-close js-close-come" src="image/xrest.png" alt="">
+                <h3>Вход в личный кабинет</h3>
+                <form action="">
+                    <h4>Ваш номер телефона </h4>
+                    <input type="tel" required>
+                    <h4>Ваш пароль </h4>
+                    <input type="password" required>
+                    <p class="remember row">
+                        <input class="remember-input" type="checkbox" name="rememberme" value="1">
+                        Запомнить меня
+                    </p>
+
+                    <button class="button-come">Войти в аккаунт </button>
+                    <p class="botton-or-p"> или <br><span class="js-close-come js-button-registration">зарегистрироваться</span></p>
+                </form>
+            </div>
+        </div>
+        <div class="test-popup js-overlay-basket">
+            <div class="popup-basket js-popup-basket">
+                <img class="popup-close js-close-basket" src="image/xrest.png" alt="">
+                <h3>Корзина с товаром </h3>
+                <form action="">
+                    <div class="box-basket row">
+                        <img src="image/playstation.png" alt="">
+                        <p>Холодильник Vestfrost CX263W <br><span>Код: 1292354</span></p>
+                        <div class="basket-number">- 1 +</div>
+                        <h4>7 999 грн</h4>
+                        <img class="delete-basket" src="image/delete-photo.svg" alt="">
+                    </div>
+                    <div class="basket-sum">
+                        <p>Итого:</p>
+                        <h2>35 699 грн</h2>
+                    </div>
+                    <a class="button-checkout" href="checkout.html"> Оформить заказ </a>
+                </form>
+
+            </div>
+        </div>
     </header>
+
 
     <section class="product">
         <div class="container">
@@ -897,60 +983,63 @@
 
     </section>
 
-   <footer class="white">
-       <div class="container-footer">
-           <div class="flex-between">
-               <div class="flex-column">
-                   <h3>Компания
-                   </h3>
-                   <a href="">О нас</a>
-                   <a href="">Контакты</a>
-               </div>
-               <div class="flex-column">
-                   <h3>Помощь</h3>
-                   <a href="">Доставка и оплата</a>
-                   <a href="">Гарантии</a>
-                   <a href="">Помощь</a>
-                   <a href="">Публичная оферта</a>
-               </div>
-               <div class="flex-column">
-                   <h3>Полезная информация</h3>
-                   <a href="">Акции</a>
-                   <a href="">Новости и статьи</a>
-                   <a href="">Карта сайта</a>
-                   <a href="">Сотрудничество</a>
-               </div>
-               <div class="flex-column">
-                   <h3>График работы Call-центра</h3>
-                   <p>Пн-Пт: с 09:00 до 20:00</p>
-                   <p>Сб: с 10:00 до 18:00</p>
-                   <p>Вс: с 10:00 до 17:00</p>
-               </div>
-           </div>
-           <div class="flex-between">
-               <div class="icon-net">
-                   <h4>Мы в социальных сетях :</h4>
-                   <div class="flex-between">
-                       <a href="" class="icon-footer facebook"></a>
-                       <a href="" class="icon-footer instagram"></a>
-                       <a href="" class="icon-footer twitter"></a>
-                       <a href="" class="icon-footer google"></a>
-                   </div>
-               </div>
-               <form class="subscribe">
-                   <h4>Подпишитесь и получайте акции,<br>
-                       новости и спецпредложения</h4>
-                   <div class="row">
-                       <input type="text" placeholder="Введите Ваш E-mail">
-                       <button><img src="image/send-button.svg" alt=""></button>
-                   </div>
-               </form>
-           </div>
-       </div>
-       <div class="botton-footer">
-           <h4>© Интернет-магазин «Eschools» 2018</h4>
-       </div>
-   </footer>
+    <footer class="white">
+        <div class="container-footer">
+            <div class="flex-between">
+                <div class="flex-column">
+                    <h3>Компания
+                    </h3>
+                    <a href="">О нас</a>
+                    <a href="">Контакты</a>
+                </div>
+                <div class="flex-column">
+                    <h3>Помощь</h3>
+                    <a href="">Доставка и оплата</a>
+                    <a href="">Гарантии</a>
+                    <a href="">Помощь</a>
+                    <a href="">Публичная оферта</a>
+                </div>
+                <div class="flex-column">
+                    <h3>Полезная информация</h3>
+                    <a href="">Акции</a>
+                    <a href="">Новости и статьи</a>
+                    <a href="">Карта сайта</a>
+                    <a href="">Сотрудничество</a>
+                </div>
+                <div class="flex-column">
+                    <h3>График работы Call-центра</h3>
+                    <p>Пн-Пт: с 09:00 до 20:00</p>
+                    <p>Сб: с 10:00 до 18:00</p>
+                    <p>Вс: с 10:00 до 17:00</p>
+                </div>
+            </div>
+            <div class="flex-between">
+                <div class="icon-net">
+                    <h4>Мы в социальных сетях :</h4>
+                    <div class="flex-between">
+                        <a href="" class="icon-footer facebook"></a>
+                        <a href="" class="icon-footer instagram"></a>
+                        <a href="" class="icon-footer twitter"></a>
+                        <a href="" class="icon-footer google"></a>
+                    </div>
+                </div>
+                <form class="subscribe">
+                    <h4>Подпишитесь и получайте акции,<br>
+                        новости и спецпредложения</h4>
+                    <div class="row">
+                        <input type="text" placeholder="Введите Ваш E-mail">
+                        <button><img src="image/send-button.svg" alt=""></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="botton-footer">
+            <h4>© Интернет-магазин «Eschools» 2018</h4>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="js/slick.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 

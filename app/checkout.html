@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700,900" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="sass/index/_index-max-480.scss">
 </head>
 
 <body>
@@ -724,10 +725,13 @@
     </div>
 </header>
     <section class="checkout">
+
         <div class="container">
+           <div class="border_vertical"></div>
             <div class="checkout-main row white">
 
                 <div class="checkout-main-left">
+
                     <h2>Оформить заказ</h2>
                     <form action="" class="">
                         <div class="flex-between">
@@ -736,9 +740,49 @@
                                 <div class="row"><div class="tab"></div><h5></h5> </div>
                             </div>
                         </div>
+
+                        <div class="you_city">
+                            <h4 class="dostavca">Ваш город</h4>
+
+                          <select name="select-box" id="selectId list" size="10" class="select">
+
+  <option value="item-1" name="value">item-itemitem1</option>
+  <option value="item-2" name="value">item-2</option>
+  <option value="item-1" name="value">item-1</option>
+  <option value="item-2" name="value">item-2</option>
+  <option value="item-1" name="value">item-1</option>
+  <option value="item-1" name="value">item-1</option>
+  <option value="item-2" name="value">item-2</option>
+  <option value="item-1" name="value">item-1</option>
+
+  </select>
+
+                        </div>
+                        <div class="box_radio_delivery">
+                           <h4 class="dostavca">Доставка</h4>
+                          <div class="radio_buttom_delivery">
+                            <input type="radio" id="radio_new_poshta" class="delivery" name="raz"/  >
+                            <label for="radio_new_poshta">Доставка Новой Почтой</label>
+                            <p>20 грн</p>
+                            </div>
+                            <div class="radio_buttom_delivery">
+                            <input type="radio" id="radio_courier" class="delivery" name="raz"/ >
+                             <label for="radio_courier">Куръер по Киеву</label>
+                             <p>50 грн</p>
+                             </div>
+                             <div class="radio_buttom_delivery">
+                            <input type="radio" id="radio_pickup" class="delivery" name="raz"/ >
+
+                            <label for="radio_pickup">Самовывоз из магазина партнера</label>
+                             <h4>Бесплатно</h4>
+                            </div>
+                            <a href="#">Показать магазины партнеров</a>
+
+
+                        </div>
                         <div class="flex-between">
                             <h4>Телефон</h4>
-                            <input type="text">
+                            <input type="tel">
                         </div>
                         <div class="flex-between">
                             <h4>Имя</h4>
@@ -756,19 +800,90 @@
                         <div class="flex-between">
                             <h4>E-mail
                             </h4>
-                            <input type="text">
+                            <input type="email">
                         </div>
                         <div class="flex-between">
                             <h4>новая почта
                             </h4>
                             <input type="text">
                         </div>
-                    </form>
 
+                        <div class="sposob_oplatu">
+                            <h4>Способ оплаты</h4>
+                            <p>При получении</p>
+                        </div>
+                    </form>
+               <div class="lain_gorizontal"></div>
+
+
+                    <div class="inform_o_dostavke">
+                        <h2>Самовывоз из магазина партнеров</h2>
+                       <div class="inform_dostavka_flex">
+                        <img src="image/brain-logo.png" alt="">
+                         <p>г. Киев, пр. Победы 291</p>
+                         </div>
+                         <div class="inform_dostavka_flex">
+                        <img src="image/brain-logo.png" alt="">
+                        <p>г. Киев, пр. Победы 34</p>
+                        </div>
+                        <div class="inform_dostavka_flex">
+                        <img src="image/brain-logo.png" alt="">
+                        <p>г. Киев, пр. Победы 83</p>
+                        </div>
+                         <div class="inform_dostavka_flex">
+                        <img src="image/brain-logo.png" alt="">
+                         <p>г. Киев, пр. Победы 198</p>
+                        </div>
+
+
+                    </div>
+                     <div class="lain_gorizontal"></div>
+
+                     <div class="checkout_button">
+                     <input type="submit" value="Оформить заказ"></div>
 
                 </div>
 
-                <div class="checkout-main-right"></div>
+                <div class="checkout-main-right">
+                    <div class="tovar_right">
+                        <img src="image/playstation.png" alt="" class="tovar_img_right">
+
+
+                        <div class="tovar_info_right">
+                        <h4>Холодильник Vestfrost CX263W</h4>
+
+                        <p>Код: 1318632</p>
+                        <div class="tovar_colvo_praces">
+                        <input type="number">
+                        <h3>7 999 грн</h3>
+                        </div>
+                        </div>
+                     <img src="image/delete-photo.svg" alt="" class="tovar_right_delit">
+                    </div>
+                    <div class="lain"></div>
+
+                    <div class="tovar_right">
+                        <img src="image/playstation.png" alt="" class="tovar_img_right">
+
+
+                        <div class="tovar_info_right">
+                        <h4>Холодильник Vestfrost CX263W</h4>
+
+                        <p>Код: 1318632</p>
+                        <div class="tovar_colvo_praces">
+                        <input type="number">
+                        <h3>7 999 грн</h3>
+                        </div>
+                        </div>
+                     <img src="image/delete-photo.svg" alt="" class="tovar_right_delit">
+                    </div>
+                    <div class="lain"></div>
+
+                       <div class="total_right">
+                           <p>Итого:</p>
+                           <h1>35 699 грн</h1>
+                       </div>
+                </div>
             </div>
 
         </div>
@@ -827,5 +942,8 @@
         <h4>© Интернет-магазин «Eschools» 2018</h4>
     </div>
 </footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="js/select.js"></script>
 </body>
 </html>

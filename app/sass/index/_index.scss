@@ -288,6 +288,7 @@ header {
         .basket-block {
             position: relative;
             z-index: 13;
+
             span {
                 display: flex;
                 justify-content: center;
@@ -580,7 +581,7 @@ header {
             line-height: 17px;
         }
 
-        input {
+        input[type="text"] {
             margin-bottom: 30px;
             height: 35px;
             width: 475px;
@@ -588,8 +589,17 @@ header {
             border-radius: 13px;
             background-color: #FFFFFF;
         }
+
+
     }
 }
+
+.box_radio_delivery {
+    display: flex;
+    flex-direction: column;
+
+}
+
 
 .about-us {
     padding: 40px 50px 40px 40px;
@@ -624,6 +634,7 @@ aside {
         padding: 15px 40px;
         width: 100%;
     }
+
 }
 
 .page-contact {
@@ -1333,4 +1344,158 @@ footer {
 
     }
 
+}
+
+.selection-items-name {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+
+    p {
+
+        span {}
+
+        img {}
+    }
+}
+
+.selection-items-main {
+    border: 1px solid #E3E3E3;
+    border-radius: 10px;
+
+    aside {
+        height: 418px;
+        width: 280px;
+        border-radius: 0px;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-bottom: 1px solid #E3E3E3;
+
+
+        h4 {
+            display: block;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 19px;
+            margin-bottom: 20px;
+        }
+
+        .aside-items-sell {
+            padding: 27px 30px 40px;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 19px;
+            border-bottom: 1px solid #E3E3E3;
+
+            input {
+                width: 60px;
+                border: 1px solid #E3E3E3;
+                border-radius: 12.5px;
+                padding: 5px;
+            }
+        }
+
+        .aside-brand {
+            padding: 27px 30px;
+
+            p {
+                font-size: 14px;
+                font-weight: 300;
+                line-height: 17px;
+                margin-bottom: 7px;
+
+                input {
+
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+
+    .product-items {
+        flex-wrap: wrap;
+
+        .product-items-box:hover {
+
+        }
+        .product-items-box {
+
+            padding: 15px 20px;
+            height: 418px;
+            width: 286px;
+            border-bottom: 1px solid #E3E3E3;
+            border-left: 1px solid #E3E3E3;
+            background-color: #FFFFFF;
+
+
+            .button-by-items {
+                color: #fff;
+                background: linear-gradient(90deg, #4FC5FF 0%, #2CACEB 100%);
+                border-radius: 30px;
+                height: 55px;
+                width: 206px;
+                font-size: 12px;
+                font-weight: bold;
+                line-height: 14px;
+                text-align: center;
+            }
+
+
+            .box-sale-new {
+                margin: -15px 10px 0px auto;
+                color: #fff;
+                height: 48px;
+                width: 77px;
+                background-color: #2CACEB;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 22px;
+
+            }
+
+            .box-sale {
+                margin: -15px 10px 0px auto;
+                color: #fff;
+                height: 48px;
+                width: 77px;
+                background-color: #EE3E3E;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 22px;
+            }
+
+            p {
+                font-size: 21px;
+                font-weight: bold;
+                line-height: 25px;
+                margin-bottom: 22px;
+
+                span {
+                    color: #E3E3E3;
+                    font-size: 14px;
+                    text-decoration: line-through;
+                    line-height: 17px;
+                }
+            }
+
+            .box-img {
+                height: 200px;
+                width: 100%;
+
+                img {
+                    display: block;
+                    margin: 0 auto;
+                    height: 100%;
+                    width: auto;
+                }
+            }
+        }
+    }
 }

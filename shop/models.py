@@ -1,5 +1,5 @@
 from django.db import models
-
+from singleton_model import SingletonModel
 # Create your models here.
 
 
@@ -18,4 +18,5 @@ class News(models.Model):
         ordering = ['-created', '-updated']
         verbose_name = 'Новина'
         verbose_name_plural = 'Новини'
+
 

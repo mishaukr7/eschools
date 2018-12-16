@@ -16,6 +16,10 @@
 {% endblock stylesheets %}
 
 {% block javascript %}
+    <script>
+        let arr_l = '<img class="slick-prev" src="' + "{% static 'app/image/arr_l.png' %}" + '">',
+            arr_r = '<img class="slick-next" src="' + "{% static 'app/image/arr_r.png' %}" + '">';
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="{% static 'app/js/slick.js' %}"></script>
     <script src="{% static 'app/js/main.js' %}"></script>
@@ -23,125 +27,300 @@
 
 {% block header %}
 {% load mptt_tags %}
-    <header>
-        <div class="container">
-            <div class="flex-between">
-                <div class="logo">
-                    <a href="index.html"><img src="{% static 'app/image/e-schools.png' %}" alt=""></a>
-                </div>
-                <div>
-                    <div class="header-top">
-                        <div class="row">
-                            <p>(044) 333-24-44</p>
-                            <p>(055) 310-14-24</p>
-                            <div class="call-me js-button-call"><img src="{% static 'app/image/smartphone.svg' %}" alt="">
-                                <p><span>Передзвоніть мені</span></p>
-                            </div>
-
-                            <div class="come-or-check row">
-                                <div class="come-in js-button-come">
-                                    <img src="{% static 'app/image/come-in.svg' %}" alt="">Вхід
-                                </div>
-                                / <div class="check-in js-button-registration">Реєстрація</div>
-                            </div>
-                        </div>
+<div class="container">
+    <div class="flex-between">
+        <div class="logo">
+            <a href="index.html"><img src="{% static 'app/image/e-schools.png' %}" alt=""></a>
+        </div>
+        <div>
+            <div class="header-top">
+                <div class="row">
+                    <p>(044) 333-24-44</p>
+                    <p>(055) 310-14-24</p>
+                    <div class="call-me js-button-call"><img src="{% static 'app/image/smartphone.svg' %}" alt="">
+                        <p><span>Передзвоніть мені</span></p>
                     </div>
-                    <nav class="">
-                        <ul class="flex-between">
-                            <li><a href="">Доставка и оплата</a></li>
-                            <li><a href="product.html">Товары</a></li>
-                            <li><a href="">Для пользователей E-schools</a></li>
-                            <li><a href="">Помощь</a></li>
-                            <li><a href="contact.html">Контакты</a></li>
-                            <li><a href="about-us.html">О нас</a></li>
-                        </ul>
-                    </nav>
+
+                    <div class="come-or-check row">
+                        <div class="come-in js-button-come">
+                            <img src="{% static 'app/image/come-in.svg' %}" alt="">Вхід
+                        </div>
+                        / <div class="check-in js-button-registration">Реєстрація</div>
+                    </div>
                 </div>
             </div>
-            <div class="flex-between">
-                <div class="drop-menu static">
-                    <button class="button-menu"><img src="" alt="">Услуги и товары</button>
+            <nav class="">
+                <ul class="flex-between">
+                    <li><a href="">Доставка і оплата</a></li>
+                    <li><a href="product.html">Товари</a></li>
+                    <li><a href="">Для користувачів E-schools</a></li>
+                    <li><a href="">Допомога</a></li>
+                    <li><a href="contact.html">Контакти</a></li>
+                    <li><a href="about-us.html">Про нас</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="flex-between">
+        <div class="drop-menu static">
+            <button class="button-menu"><img src="" alt="">Послуги і товари</button>
 
-                    <ul>
-                        {% recursetree category_tree %}
-                        <li> {{ node.name }}
-                            <div class="menu-block white">
-                                <div class="row">
-                                    <div class="menu-block-left">
-                                        <div class="row">
-                                            {% if not node.is_leaf_node %}
-                                            <div class="box flex-colomn">
-                                                <h4>{{children}}</h4>
-                                                {% if not children.is_leaf_node %}
-                                                <a href="#"></a>
-                                                <a href="">FORMA</a>
-                                                <a href="">Bastion</a>
-                                                <a href="">Galaxy</a>
-                                                <a href="">Twix</a>
-                                                {% endif %}
-                                            </div>
-                                            {% endif %}
-                                            <div class="box">
-                                                <h4>Компьютерная техника
-                                                </h4>
-                                                <a href="#">Ноутбуки и планшеты</a>
-                                                <a href="">Компьютеры и комплектующие</a>
-                                                <a href="">Мониторы</a>
-                                                <a href="">Переферия</a>
-                                                <a href="">Сетевое оборудование</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="box flex-colomn">
-                                                <h4>Видеонаблюдение</h4>
-                                                <a href="#">1C Video Lite Camera</a>
-                                                <a href="">
-                                                    Yi Home Camera</a>
-                                                <a href="">
-                                                    CoVi Security</a>
-                                                <a href="">DaHua KIT </a>
-                                                <a href="">Tecsar MEGA</a>
-                                                <a href="">Security Time</a>
-                                                <a href="">West Digital</a>
-                                            </div>
-                                            <div class="box">
-                                                <h4>Оргтехника</h4>
-                                                <a href="#">Принтеры</a>
-                                                <a href="">Сканеры</a>
-                                                <a href="">Расходные материалы</a>
-                                                <a href="">МФУ</a>
-                                                <a href="">Кабели для принтеров</a>
-                                                <a href="">К Кабели для сканеров</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-block-right">
-                                        <img src="{% static 'app/image/ekran.png' %}" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        {% endrecursetree %}
-                    </ul>
-                </div>
-                <div class="header-right-block">
-                    <div class="search">
+            <ul>
+                {% full_tree_for_model catalog.Category as category_tree%}
+                {% for category, structure in category_tree|tree_info %}
+                {% if category.level == 0 %}
+                <li> {{category.name}}
+                    <div class="menu-block white">
                         <div class="row">
-                            <div class="block-input-search row"><input type="text">
-                                <button><img src="{% static 'app/image/magnifying-glass%20(1).svg' %}" alt=""></button></div>
-                            <div class="basket-block js-button-basket">
-                                <img src="{% static 'app/image/shopping-basket-button.svg' %}" alt="">
-                                <span>1</span>
+                            <div class="menu-block-left">
+                                <div class="row">
+                                    {% for category_level_1 in category.get_children %}
+                                        <div class="box flex-colomn">
+                                            <h4>{{category_level_1.name}}</h4>
+                                                {% for category_level_2 in category_level_1.get_children %}
+                                                    <a href="#"> {{category_level_2.name}}</a>
+                                                {% endfor %}
+                                        </div>
+                                        {% if forloop.counter|divisibleby:3 %}
+                                        </div>
+                                        <div class="row">
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="header-slider">
-                        <img src="{% static 'app/image/projectSlider.jpg' %}" alt="non">
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="header-right-block">
+            <div class="search">
+                <div class="row">
+                    <div class="block-input-search row"><input type="text">
+                        <button><img src="{% static 'app/image/magnifying-glass%20(1).svg' %}" alt=""></button></div>
+                    <div class="basket-block js-button-basket">
+                        <img src="{% static 'app/image/shopping-basket-button.svg' %}" alt="">
+                        <span>1</span>
                     </div>
                 </div>
+            </div>
+            <div class="header-slider">
+                <img src="{% static 'app/image/projectSlider.jpg' %}" alt="non">
             </div>
         </div>
-    </header>
-
+    </div>
+</div>
 {% endblock header %}
+{% block  headerpopup%}
+<div class="test-popup js-overlay-call">
+    <div class="popup-come js-popup-call">
+        <img class="popup-close js-close-call" src="{% static 'app/image/xrest.png' %}" alt="">
+        <h3>Обратный звонок</h3>
+        <p>Введите Ваш номер мобильного телефона
+            и наш оператор перезвонит Вам в ближайшее время.</p>
+        <form action="">
+            <h4>Ваше Имя</h4>
+            <input type="text" required>
+            <h4>Ваш номер телефона </h4>
+            <input type="tel" required>
+            <button class="button-tell">Заказать звонок </button>
+        </form>
+    </div>
+</div>
+<div class="test-popup js-overlay-registration">
+    <div class="popup-come js-popup-registration">
+        <img class="popup-close js-close-registration" src="{% static 'app/image/xrest.png' %}" alt="">
+        <h3>Регистрация </h3>
+        <form action="">
+            <h4>Ваше имя</h4>
+            <input type="text" required>
+            <h4>Ваш номер телефона </h4>
+            <input type="tel" required>
+            <h4>Ваш пароль </h4>
+            <input type="password" required>
+            <h4>Ваш E-mail</h4>
+            <input type="email" required>
+
+            <p class="remember row">
+                <input class="remember-input" type="checkbox" name="rememberme" value="1">
+                Я пользователь портала
+            </p>
+            <h4>Ваш ID</h4>
+            <input type="text" required>
+            <button class="button-continue">Продолжить</button>
+            <p class="botton-or-p">или <br><span class="js-close-registration js-button-come">войти</span></p>
+        </form>
+    </div>
+</div>
+
+<div class="test-popup js-overlay-come">
+    <div class="popup-come js-popup-come">
+        <img class="popup-close js-close-come" src="{% static 'app/image/xrest.png' %}" alt="">
+        <h3>Вход в личный кабинет</h3>
+        <form action="">
+            <h4>Ваш номер телефона </h4>
+            <input type="tel" required>
+            <h4>Ваш пароль </h4>
+            <input type="password" required>
+            <p class="remember row">
+                <input class="remember-input" type="checkbox" name="rememberme" value="1">
+                Запомнить меня
+            </p>
+
+            <button class="button-come">Войти в аккаунт </button>
+            <p class="botton-or-p"> или <br><span class="js-close-come js-button-registration">зарегистрироваться</span></p>
+        </form>
+    </div>
+</div>
+<div class="test-popup js-overlay-basket">
+    <div class="popup-basket js-popup-basket">
+        <img class="popup-close js-close-basket" src="image/xrest.png" alt="">
+        <h3>Корзина с товаром </h3>
+        <form action="">
+            <div class="box-basket row">
+                <img src="image/playstation.png" alt="">
+                <p>Холодильник Vestfrost CX263W <br><span>Код: 1292354</span></p>
+                <div class="basket-number">- 1 +</div>
+                <h4>7 999 грн</h4>
+                <img class="delete-basket" src="image/delete-photo.svg" alt="">
+            </div>
+            <div class="basket-sum">
+                <p>Итого:</p>
+                <h2>35 699 грн</h2>
+            </div>
+            <a class="button-checkout" href="checkout.html">  Оформить заказ </a>
+        </form>
+
+    </div>
+</div>
+{% endblock headerpopup %}
+
+{% block content %}
+<section class="best-product">
+    <div class="container">
+        <h2>Найкращі товари місяця</h2>
+        <div class="best-product-container">
+            {% for best_product in best_products %}
+            <a href="">
+                <div class="best-product-boxes">
+                    <div class="row">
+                        <h3>{{best_product.name}}</h3>
+                        <div class="box-sale">SALE!</div>
+                    </div>
+                    <div class="box-img"><img src="{{best_product.images.first.image.url}}" alt=""></div>
+                    <p><span>{{best_product.price}} грн</span><br>{{best_product.price_with_discount}} грн</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+
+<section class="new-product white">
+    <div class="container">
+        <h2>Новинки</h2>
+        <div class="slider-new-product">
+            {% for new_product in new_products %}
+            <a href="">
+                <div class="box-new-product">
+                    <img src="{{new_product.images.first.image.url}}" alt="">
+                    <p>{{new_product.name}}</p>
+                    <h2>{{new_product.price}}</h2>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="last-news">
+    <div class="container">
+        <h2>Останні новини</h2>
+        <div class="flex-between">
+            {% for news in last_news %}
+            <div class="news-box">
+                <img src="{{news.image.url}}" alt="">
+                <h3>{{news.title}} </h3>
+                <p>{{news.content|slice:':255'}}...</p>
+                <a href="">Детальніше ></a>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+{% endblock content %}
+
+
+{% block footer %}
+
+<footer class="white">
+    <div class="container-footer">
+        <div class="flex-between">
+            <div class="flex-column">
+                <h3>Компанія
+                </h3>
+                <a href="">Про нас</a>
+                <a href="">Контакти</a>
+            </div>
+            <div class="flex-column">
+                <h3>Допомога</h3>
+                <a href="">Доставка і оплата</a>
+                <a href="">Гарантії</a>
+                <a href="">Допомога</a>
+                <a href="">Публічна оферта</a>
+            </div>
+            <div class="flex-column">
+                <h3>Корисна інформація</h3>
+                <a href="">Акції</a>
+                <a href="">Новини і статті</a>
+                <a href="">Карта сайту</a>
+                <a href="">Співробітництфо</a>
+            </div>
+            <div class="flex-column">
+                <h3>Графік роботи Call-центру</h3>
+                <p>Пн-Пт: з 09:00 до 20:00</p>
+                <p>Сб: з 10:00 до 18:00</p>
+                <p>Вс: з 10:00 до 17:00</p>
+            </div>
+        </div>
+        <div class="flex-between">
+            <div class="icon-net">
+                <h4>Ми в соціальних мережах :</h4>
+                <div class="flex-between">
+                    <a href="" class="icon-footer facebook"></a>
+                    <a href="" class="icon-footer instagram"></a>
+                    <a href="" class="icon-footer twitter"></a>
+                    <a href="" class="icon-footer google"></a>
+                </div>
+            </div>
+            <form class="subscribe">
+                <h4>Підпишіться і отримуйте<br>
+                    новини и спеціальні пропозиції</h4>
+                <div class="row">
+                    <input type="text" placeholder="Введите Ваш E-mail">
+                    <button><img src="image/send-button.svg" alt=""></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="botton-footer">
+        <h4>© Інтернет-магазин «Eschools» 2018</h4>
+    </div>
+</footer>
+
+{% endblock footer %}
+
+
+
+
+
+
+
+
+
+

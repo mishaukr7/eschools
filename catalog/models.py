@@ -3,6 +3,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from django.template.defaultfilters import slugify
 from django.contrib.postgres.fields import ArrayField
 from accounts.models import CustomUser
+from django.core.exceptions import ValidationError
 # Create your models here.
 
 
@@ -44,7 +45,11 @@ class Category(MPTTModel):
         return f'categories/{self.slug}/'
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        if self.parent.level >= 3:
+            raise ValidationError(u'Достигнута максимальная вложенность!')
+
+        # ancestors = list(self.get_ancestors(include_self=True).values_list('name', flat=True))
+        # self.slug = slugify(ancestors)
         super(Category, self).save(*args, **kwargs)
 
 
@@ -53,7 +58,7 @@ class Product(models.Model):
                               on_delete=models.SET_NULL)
     product_code = models.CharField(max_length=20, blank=True, null=True, verbose_name='Код товару')
     brand = models.ForeignKey('Brand', models.CASCADE, blank=True, null=True)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     name = models.CharField(max_length=200, db_index=True, verbose_name='Назва товару')
     description = models.TextField(blank=True, verbose_name='Опис')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Ціна')
@@ -80,10 +85,13 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def get_discount_rate(self):
+        return 100 - 100 * self.price_with_discount / self.price
+
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='product/', blank=True, verbose_name='Зображення товару')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='product/', null=True, blank=True, verbose_name='Зображення товару')
     image_per_url = models.URLField(null=True, blank=True, verbose_name='Линк на изображение')
 
 
@@ -109,6 +117,8 @@ class FeedBack(models.Model):
 
     class Meta:
         ordering = ['-pub_date']
+        verbose_name = 'Відгук'
+        verbose_name_plural = 'Відгуки'
 
     def get_offset(self):
         level = len(self.path) - 1

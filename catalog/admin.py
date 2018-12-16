@@ -24,7 +24,7 @@ class ProductImageInline(admin.TabularInline):
 
 
 class ProductAdmin(ImportExportModelAdmin):
-    list_display = ['category', 'brand', 'name', 'description', 'price',
+    list_display = ['id', 'name', 'product_code', 'category', 'brand', 'description', 'price',
                     'price_with_discount', 'created', 'updated', 'review_video', 'available',
                     'partner']
     list_filter = ['name', 'created']

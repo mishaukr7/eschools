@@ -8,6 +8,7 @@ from cart.forms import CartAddProductForm
 class ProductListView(ListView):
     model = Product
     paginate_by = 9
+    template_name = 'product_list.html'
 
     def get_queryset(self):
         category_slug = self.kwargs['slug']
@@ -27,7 +28,7 @@ class ProductListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Product
-    template_name = 'product_detail.html'
+    template_name = 'catalog/product_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)

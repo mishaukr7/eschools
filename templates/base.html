@@ -11,21 +11,25 @@
     </title>
     {% block stylesheets %}{% endblock stylesheets %}
 
-    {% block javascript %}{% endblock javascript %}
+
 
     {% block extra_head %}{% endblock %}
 </head>
 <body>
 {% block body %}
 
-    {% block header %} {% endblock header %}
+<header>
+    {% block header %}{% endblock header %}
 
+    {% block headerpopup %}{% endblock headerpopup %}
+</header>
     {% block content %} {% endblock content %}
-
-    {% block popup %}  {% endblock popup %}
 
     {% block footer %} {% endblock footer %}
 
+    {% block extra_javascript %} {% endblock extra_javascript %}
+
+    {% block javascript %}{% endblock javascript %}
 {% endblock body %}
 </body>
 </html>

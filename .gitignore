@@ -20,6 +20,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+media/
 .Python
 build/
 develop-eggs/
@@ -112,4 +113,5 @@ ENV/
 .mypy_cache/
 
 # node
-node_modules/
+/node_modules/**
+/app/libs/**

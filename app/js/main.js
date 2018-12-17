@@ -113,3 +113,21 @@ $(document).mouseup(function (e) {
         $('.js-overlay-basket').fadeOut();
     }
 });
+
+
+$('#login_submit').click(function (e) {
+    var form = $('#login_form');
+    $.ajax({
+        type: "POST",
+        url: login_url,
+        data: form.serialize(),
+        success: function (data) {
+            if (data.auth === false) {
+                alert(data.message);
+            } else if (data.auth === true) {
+                window.location.reload();
+            }
+        }
+    });
+    e.preventDefault();
+});

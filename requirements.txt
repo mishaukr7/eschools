@@ -5,6 +5,7 @@ django-ckeditor==5.6.1
 django-import-export==1.1.0
 django-js-asset==1.1.0
 django-mptt==0.9.1
+django-singleton-model==0.2.3
 et-xmlfile==1.0.1
 jdcal==1.4
 odfpy==1.4.0

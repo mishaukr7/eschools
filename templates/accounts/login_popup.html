@@ -1,0 +1,25 @@
+{% load static %}
+
+<div class="test-popup js-overlay-come">
+    <div class="popup-come js-popup-come">
+        <img class="popup-close js-close-come" src="{% static 'app/image/xrest.png' %}" alt="">
+        <h3>Вход в личный кабинет</h3>
+        <form id="login_form">
+            {% csrf_token %}
+            <h4>Ваш e-mail </h4>
+            <input type="email" name="username" required>
+            <h4>Ваш пароль </h4>
+            <input type="password" name="password" required>
+            <p class="remember row">
+                <input class="remember-input" type="checkbox" name="rememberme" value="1">
+                Запомнить меня
+            </p>
+            <button id="login_submit" class="button-come">Увійти</button>
+            <p class="botton-or-p"> или <br><span class="js-close-come js-button-registration">зарегистрироваться</span></p>
+        </form>
+    </div>
+</div>
+
+<script>
+    var login_url = '{% url "accounts:user_login" %}';
+</script>

@@ -35,6 +35,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
+
     class Meta:
         verbose_name = _('Користувачі')
         verbose_name_plural = _('Користувачі')

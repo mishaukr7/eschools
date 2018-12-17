@@ -42,10 +42,14 @@
                     </div>
 
                     <div class="come-or-check row">
+                        {% if user.is_authenticated %}
+                        <div>Привіт, {{user.get_full_name}}</div>
+                        {% else %}
                         <div class="come-in js-button-come">
                             <img src="{% static 'app/image/come-in.svg' %}" alt="">Вхід
                         </div>
                         / <div class="check-in js-button-registration">Реєстрація</div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -129,6 +133,9 @@
         </form>
     </div>
 </div>
+
+{% include 'accounts/login_popup.html' %}
+
 <div class="test-popup js-overlay-registration">
     <div class="popup-come js-popup-registration">
         <img class="popup-close js-close-registration" src="{% static 'app/image/xrest.png' %}" alt="">
@@ -155,25 +162,6 @@
     </div>
 </div>
 
-<div class="test-popup js-overlay-come">
-    <div class="popup-come js-popup-come">
-        <img class="popup-close js-close-come" src="{% static 'app/image/xrest.png' %}" alt="">
-        <h3>Вход в личный кабинет</h3>
-        <form action="">
-            <h4>Ваш номер телефона </h4>
-            <input type="tel" required>
-            <h4>Ваш пароль </h4>
-            <input type="password" required>
-            <p class="remember row">
-                <input class="remember-input" type="checkbox" name="rememberme" value="1">
-                Запомнить меня
-            </p>
-
-            <button class="button-come">Войти в аккаунт </button>
-            <p class="botton-or-p"> или <br><span class="js-close-come js-button-registration">зарегистрироваться</span></p>
-        </form>
-    </div>
-</div>
 <div class="test-popup js-overlay-basket">
     <div class="popup-basket js-popup-basket">
         <img class="popup-close js-close-basket" src="image/xrest.png" alt="">

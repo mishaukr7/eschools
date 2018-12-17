@@ -17,11 +17,13 @@ $('.slider-new-product').slick({
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    prevArrow: arr_l,
-    nextArrow: arr_r
+    prevArrow: '<img class="slick-prev" src="image/arr_l.png">',
+    nextArrow: '<img class="slick-next" src="image/arr_r.png">'
 });
 
 $('.drop-menu').toggleClass("visible");
+
+
 
 
 // открыть по кнопке
@@ -110,4 +112,22 @@ $(document).mouseup(function (e) {
     if (e.target != popup[0] && popup.has(e.target).length === 0) {
         $('.js-overlay-basket').fadeOut();
     }
+});
+
+
+$('#login_submit').click(function (e) {
+    var form = $('#login_form');
+    $.ajax({
+        type: "POST",
+        url: login_url,
+        data: form.serialize(),
+        success: function (data) {
+            if (data.auth === false) {
+                alert(data.message);
+            } else if (data.auth === true) {
+                window.location.reload();
+            }
+        }
+    });
+    e.preventDefault();
 });

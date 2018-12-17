@@ -14,3 +14,4 @@ class HomePageView(TemplateView):
         context['new_products'] = Product.objects.order_by('-created')[:10]
         context['last_news'] = News.objects.order_by('-created')[:3]
         return context
+

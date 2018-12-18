@@ -14,6 +14,17 @@
     <link href="{% static 'app/css/main.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'app/css/slick.css' %}">
 {% endblock stylesheets %}
+{% block extra_head %}
+{% if request.path == '/' %}
+
+<style>
+    header .drop-menu.visible ul {
+        display: block;
+    }
+</style>
+{% endif %}
+{% endblock %}
+
 
 {% block javascript %}
     <script>
@@ -30,7 +41,7 @@
 <div class="container">
     <div class="flex-between">
         <div class="logo">
-            <a href="index.html"><img src="{% static 'app/image/e-schools.png' %}" alt=""></a>
+            <a href="{% url 'shop:home' %}"><img src="{% static 'app/image/e-schools.png' %}" alt=""></a>
         </div>
         <div>
             <div class="header-top">
@@ -43,7 +54,8 @@
 
                     <div class="come-or-check row">
                         {% if user.is_authenticated %}
-                        <div>Привіт, {{user.get_full_name}}</div>
+                        <div>Привіт, <br> {{user.get_full_name}}</div>
+                        <div> <a href="{% url 'accounts:logout' %}"> Вихід</a></div>
                         {% else %}
                         <div class="come-in js-button-come">
                             <img src="{% static 'app/image/come-in.svg' %}" alt="">Вхід
@@ -56,7 +68,7 @@
             <nav class="">
                 <ul class="flex-between">
                     <li><a href="">Доставка і оплата</a></li>
-                    <li><a href="product.html">Товари</a></li>
+                    <li><a href="{% url 'catalog:product_list' %}">Товари</a></li>
                     <li><a href="">Для користувачів E-schools</a></li>
                     <li><a href="">Допомога</a></li>
                     <li><a href="contact.html">Контакти</a></li>
@@ -99,6 +111,8 @@
                 {% endfor %}
             </ul>
         </div>
+        {% block slider %}
+        {% if request.path == '/' %}
         <div class="header-right-block">
             <div class="search">
                 <div class="row">
@@ -114,6 +128,8 @@
                 <img src="{% static 'app/image/projectSlider.jpg' %}" alt="non">
             </div>
         </div>
+        {% endif %}
+        {% endblock slider %}
     </div>
 </div>
 {% endblock header %}
@@ -134,33 +150,9 @@
     </div>
 </div>
 
+{% include 'accounts/signup_popup.html' %}
+
 {% include 'accounts/login_popup.html' %}
-
-<div class="test-popup js-overlay-registration">
-    <div class="popup-come js-popup-registration">
-        <img class="popup-close js-close-registration" src="{% static 'app/image/xrest.png' %}" alt="">
-        <h3>Регистрация </h3>
-        <form action="">
-            <h4>Ваше имя</h4>
-            <input type="text" required>
-            <h4>Ваш номер телефона </h4>
-            <input type="tel" required>
-            <h4>Ваш пароль </h4>
-            <input type="password" required>
-            <h4>Ваш E-mail</h4>
-            <input type="email" required>
-
-            <p class="remember row">
-                <input class="remember-input" type="checkbox" name="rememberme" value="1">
-                Я пользователь портала
-            </p>
-            <h4>Ваш ID</h4>
-            <input type="text" required>
-            <button class="button-continue">Продолжить</button>
-            <p class="botton-or-p">или <br><span class="js-close-registration js-button-come">войти</span></p>
-        </form>
-    </div>
-</div>
 
 <div class="test-popup js-overlay-basket">
     <div class="popup-basket js-popup-basket">
@@ -191,7 +183,7 @@
         <h2>Найкращі товари місяця</h2>
         <div class="best-product-container">
             {% for best_product in best_products %}
-            <a href="">
+            <a href="{{best_product.get_absolute_url}}">
                 <div class="best-product-boxes">
                     <div class="row">
                         <h3>{{best_product.name}}</h3>

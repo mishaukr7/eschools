@@ -17,8 +17,8 @@ $('.slider-new-product').slick({
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    prevArrow: '<img class="slick-prev" src="image/arr_l.png">',
-    nextArrow: '<img class="slick-next" src="image/arr_r.png">'
+    prevArrow: arr_l,
+    nextArrow: arr_r
 });
 
 $('.drop-menu').toggleClass("visible");
@@ -114,7 +114,6 @@ $(document).mouseup(function (e) {
     }
 });
 
-
 $('#login_submit').click(function (e) {
     var form = $('#login_form');
     $.ajax({
@@ -127,6 +126,26 @@ $('#login_submit').click(function (e) {
             } else if (data.auth === true) {
                 window.location.reload();
             }
+        }
+    });
+    e.preventDefault();
+});
+
+$('#signup_submit').click(function (e) {
+    var form = $('#signup_form');
+    $.ajax({
+        type: "POST",
+        url: signup_url,
+        data: form.serialize(),
+        success: function (data) {
+            if (data.signup === true) {
+                alert(data.message);
+                $('.js-overlay-registration').fadeOut();
+                $('.js-overlay-come').fadeIn();
+            } else if (data.signup === false) {
+                alert(data.message);
+            }
+
         }
     });
     e.preventDefault();

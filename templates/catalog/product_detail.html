@@ -16,7 +16,6 @@
                 {% if image.image_per_url %}
                 <img src="{{image.image_per_url}}" alt="">
                 {% endif %}
-
                 {%endfor%}
             </div>
             <div class="product-main-center">
@@ -39,7 +38,7 @@
                             {{object.get_discount_rate}} грн.</span></p>
                     <img src="image/%D0%92%D0%B8%D1%88%D0%BB%D0%B8%D1%81%D1%82.svg" alt="">
                 </div>
-                <a href="/checkout.html"> <button class="button-buy">Купить</button></a>
+                <a href=""> <button class="button-buy">Купить</button></a>
             </div>
         </div>
     </div>
@@ -52,8 +51,7 @@
                 {% regroup object.characteristics.all by characteristic_type as characteristic_type_list %}
                 {% for characteristic_type in characteristic_type_list %}
                 <div class="box-characteristic">
-
-                    <p><span>{{characteristic.grouper}}</span></p>
+                    <p><span>{{characteristic_type.grouper}}</span></p>
                     {% for characteristic in characteristic_type.list %}
                     <p class="flex-between">{{characteristic.name}} <span>{{characteristic.value}}</span></p>
                     {% endfor %}

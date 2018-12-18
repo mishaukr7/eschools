@@ -115,3 +115,6 @@ ENV/
 # node
 /node_modules/**
 /app/libs/**
+
+#SETTINGS PARAMETERS
+/eschools/settings/__init__.py

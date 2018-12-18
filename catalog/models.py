@@ -1,15 +1,16 @@
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
-from django.template.defaultfilters import slugify
+from django.utils.text import slugify
 from django.contrib.postgres.fields import ArrayField
 from accounts.models import CustomUser
 from django.core.exceptions import ValidationError
+from django.urls import reverse
 # Create your models here.
 
 
 class Category(MPTTModel):
     name = models.CharField(max_length=200)
-    slug = models.SlugField()
+    slug = models.SlugField(allow_unicode=True)
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True,
                             on_delete=models.SET_NULL)
 
@@ -47,9 +48,7 @@ class Category(MPTTModel):
     def save(self, *args, **kwargs):
         if self.parent.level >= 3:
             raise ValidationError(u'Достигнута максимальная вложенность!')
-
-        # ancestors = list(self.get_ancestors(include_self=True).values_list('name', flat=True))
-        # self.slug = slugify(ancestors)
+        self.slug = slugify(self.name, allow_unicode=True)
         super(Category, self).save(*args, **kwargs)
 
 
@@ -58,7 +57,7 @@ class Product(models.Model):
                               on_delete=models.SET_NULL)
     product_code = models.CharField(max_length=20, blank=True, null=True, verbose_name='Код товару')
     brand = models.ForeignKey('Brand', models.CASCADE, blank=True, null=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(allow_unicode=True)
     name = models.CharField(max_length=200, db_index=True, verbose_name='Назва товару')
     description = models.TextField(blank=True, verbose_name='Опис')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Ціна')
@@ -72,7 +71,7 @@ class Product(models.Model):
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.name, allow_unicode=True)
         super(Product, self).save(force_insert=False, force_update=False, using=None,
                                   update_fields=None)
 
@@ -86,7 +85,10 @@ class Product(models.Model):
         return self.name
 
     def get_discount_rate(self):
-        return 100 - 100 * self.price_with_discount / self.price
+        return int(100 - 100 * self.price_with_discount / self.price)
+
+    def get_absolute_url(self):
+        return reverse('catalog:product', args=(str(self.slug), str(self.id)))
 
 
 class ProductImage(models.Model):

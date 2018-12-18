@@ -1,0 +1,68 @@
+{% extends "shop/index.html" %}
+{% load static %}
+
+{% block title %} Товари {% endblock title %}
+
+{% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700,900" rel="stylesheet">
+    <link href="{% static 'app/css/main.css' %}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="selection-items-name container flex-between">
+        <h2></h2>
+        <p>Сортировать: <span>по популярности</span> <img src="" alt=""></p>
+</div>
+<main class="selection-items-main container white row">
+    <aside>
+        <div class="aside-items-sell">
+            <h4>Цена</h4>
+            <p class="flex-between">от <input type="text">до<input type="text">грн.</p>
+        </div>
+        <div class="aside-brand">
+            <h4>Бренд</h4>
+            {% for brand in brands %}
+            <p><input class="remember-input" type="checkbox" name="rememberme" value="{{brand.id}}">{{brand.name}}</p>
+             {% endfor %}
+        </div>
+    </aside>
+    <section class="product-items row">
+        {% for product in products %}
+        <div class="product-items-box">
+            <div class="row">
+                <h3>{{product.name}}</h3>
+                <div class="box-sale">{{product.get_discount_rate}}%</div>
+            </div>
+            <div class="box-img"><img src="{{ product.images.first.image.url }}" alt=""></div>
+            <p><span>{{product.price}}} грн</span><br>{{product.price_with_discount}} грн</p>
+            <button class="button-by-items">Купить
+            </button>
+        </div>
+        {% endfor %}
+        {% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+    </section>
+</main>
+
+{% endblock content %}
+

@@ -10,15 +10,24 @@
         {% block title %}{% endblock title %}
     </title>
     {% block stylesheets %}{% endblock stylesheets %}
+    {% block extra_head %}
 
+    <style>
+        header .drop-menu.visible ul {
+            display: block;
+        }
+    </style>
 
-    {% block extra_head %}{% endblock %}
+    {% endblock %}
 </head>
 <body>
 {% block body %}
 
 <header>
-    {% block header %}{% endblock header %}
+    {% block header %}
+        {% block slider%}
+        {% endblock slider %}
+    {% endblock header %}
 
     {% block headerpopup %} {% endblock headerpopup %}
 </header>

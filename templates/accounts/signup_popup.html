@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load static %}
 
-</body>
-</html>
+<div class="test-popup js-overlay-registration">
+    <div class="popup-come js-popup-registration">
+        <img class="popup-close js-close-registration" src="{% static 'app/image/xrest.png' %}" alt="">
+        <h3>Реєстрація </h3>
+        <form id="signup_form">
+            {% csrf_token %}
+            <h4>Ваше ім'я</h4>
+            <input type="text" name="first_name" required>
+            <h4>Ваше прізвище</h4>
+            <input type="text" name="last_name" required>
+            <h4>Ваш номер телефону </h4>
+            <input type="tel" name="phone">
+            <h4>Ваш пароль </h4>
+            <input type="password" name="password1" required>
+            <h4>Повторіть пароль </h4>
+            <input type="password" name="password2" required>
+            <h4>Ваш E-mail</h4>
+            <input type="email" name="email" required>
+            <p class="remember row">
+                <input class="remember-input" type="checkbox" name="is_portal_checker" value="1">
+                Я пользователь портала
+            </p>
+            <h4>Ваш ID</h4>
+            <input type="text" name="portal_code">
+            <button id="signup_submit" class="button-continue">Продолжить</button>
+            <p class="botton-or-p">или <br><span class="js-close-registration js-button-come">войти</span></p>
+        </form>
+    </div>
+</div>
+
+<script>
+    var signup_url = '{% url "accounts:signup" %}';
+</script>

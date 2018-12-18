@@ -24,6 +24,7 @@ class ProductImageInline(admin.TabularInline):
 
 
 class ProductAdmin(ImportExportModelAdmin):
+    #   prepopulated_fields = {"slug": ("name", )}
     list_display = ['id', 'name', 'product_code', 'category', 'brand', 'description', 'price',
                     'price_with_discount', 'created', 'updated', 'review_video', 'available',
                     'partner']

@@ -48,7 +48,7 @@
         <div class="description-main white row">
             <div class="product-characteristic">
                 <h4>Характеристики товару</h4>
-                {% regroup object.characteristics.all by characteristic_type as characteristic_type_list %}
+                {% regroup characteristics by characteristic_type as characteristic_type_list %}
                 {% for characteristic_type in characteristic_type_list %}
                 <div class="box-characteristic">
                     <p><span>{{characteristic_type.grouper}}</span></p>
@@ -66,4 +66,66 @@
         </div>
     </div>
 </section>
+<section class="reviews">
+    <div class="container">
+        <h2>Відгуки про {{object.name}}</h2>
+
+        <div class="reviews-main white">
+            <div class="reviews-top row">
+                <div class="reviews-name">
+                    <h4>Юлия</h4>
+                </div>
+                <div class="reviews-read">
+                    <div class="flex-between">
+                        <p>Сыну для учебы самое оно, достаточно. Лицензионный виндовс уже установлен, офис докупил, теперь презентации-рефераты делать можно, искать что-то в интернете ну и в игрушки браузерные тоже можно поиграть. Качество сборки хорошее, видно что вещь надежная.</p>
+                    </div>
+
+                    <div class="bottom-button row">
+                        <div class="tab row">
+                            <img src="" alt="">
+                            <p class="">Ответить</p>
+                        </div>
+                        <p>Полезен ли отзыв?</p>
+                        <div class="dislike-like row">
+                            <img src="" alt="">10
+                            <img src="" alt="">3
+                        </div>
+                    </div>
+                </div>
+                <p>06 апреля 2018</p>
+            </div>
+
+            <div class="you-reviews-reply">
+                <div class="flex-between">
+                    <h4><img src="" alt="">Владимир</h4>
+                    <p>06 апреля 2018</p>
+                </div>
+                <p>Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш текст</p>
+            </div>
+
+            <div class="reviews-reply row">
+                <form action="">
+                    <p>Ваше имя <span>*</span></p>
+                    <input type="text">
+                    <p>Ваш ответ </p>
+                    <input class="input-reply" type="text">
+                    <div class="flex-end">
+                        <button class="button-reply">Ответить</button>
+                        <button class="button-cancel">Отменить</button>
+                    </div>
+                </form>
+                <div class="reviews-reply-right">
+                    <p>
+                        Обратите внимание: текст должен содержать отзыв о товаре, а не об обслуживании. Запрещено размещение ссылок на сторонние ресурсы, спам, упоминание других магазинов. <br><br>
+
+                        Обратите внимание: сообщения проходят модерацию. Комментарии, содержащие ненормативную лексику, оскорбления, ссылки на сторонние ресурсы, спам опубликованы не будут.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
 {% endblock content %}

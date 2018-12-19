@@ -1,8 +1,10 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Product, Category, Brand
+from .models import Product, Category, Brand, FeedBack, ProductCharacteristic
 from cart.forms import CartAddProductForm
-# Create your views here.
+from django.views.decorators.http import require_http_methods
+from .forms import FeedBackForm
+from django.shortcuts import get_object_or_404
+from django.contrib import auth
 
 
 class ProductListView(ListView):
@@ -24,8 +26,23 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
+        context['characteristics'] = ProductCharacteristic.objects.filter(
+            product_id=self.kwargs['pk']).order_by('characteristic_type')
         context['cart_product_form'] = CartAddProductForm()
+        context['product_feedback'] = FeedBack.objects.filter(product_id=self.kwargs['pk'])
+        print(context)
         return context
 
-    def post(self, request, *args, **kwargs):
-        return
+
+@require_http_methods(['POST'])
+def add_comment(request, product):
+    form = FeedBackForm(request.POST)
+    product = get_object_or_404(Product, id=product)
+
+    if form.is_valid():
+        try:
+            author = auth.get_user(request)
+
+        except:
+            author = None
+
